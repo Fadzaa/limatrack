@@ -79,3 +79,43 @@ class CommonButtonGoogle extends StatelessWidget {
     );
   }
 }
+
+class CommonButtonOutline extends StatelessWidget {
+  CommonButtonOutline({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.style
+  });
+
+  String text;
+  VoidCallback onPressed;
+  TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: const BorderSide(
+                color: primaryColor,
+                width: 1
+              )
+          ),
+        ),
+
+        child: Text(
+          text,
+          style: style ?? tsBodyMedium.copyWith(
+            color: primaryColor,
+            fontWeight: FontWeight.w600,
+          ),
+        )
+
+    );
+  }
+}
