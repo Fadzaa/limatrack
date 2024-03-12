@@ -6,10 +6,10 @@ import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
-import 'login_page_controller.dart';
+import 'register_page_controller.dart';
 
-class LoginPageView extends GetView<LoginPageController> {
-  const LoginPageView({super.key});
+class RegisterPageView extends GetView<RegisterPageController> {
+  const RegisterPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class LoginPageView extends GetView<LoginPageController> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "Selamat Datang \nKembali di Lima",
+                        text: "Buat Akun dan \nJelajahi Lima",
                         style: tsTitleMedium.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -51,6 +51,12 @@ class LoginPageView extends GetView<LoginPageController> {
                 const SizedBox(height: 50,),
 
                 CommonTextField(
+                    controller: controller.nameController,
+                    hintText: "Nama Lengkap",
+                    prefixIcon: icPersonOutline,
+                ),
+
+                CommonTextField(
                   controller: controller.emailController,
                   hintText: "Email",
                   prefixIcon: icMail,
@@ -63,10 +69,17 @@ class LoginPageView extends GetView<LoginPageController> {
                   isObscure: true,
                 ),
 
+                CommonTextField(
+                  controller: controller.confirmPassController,
+                  hintText: "Konfirmasi Kata Sandi",
+                  prefixIcon: icLockOutline,
+                  isObscure: true,
+                ),
+
                 const SizedBox(height: 25,),
                 
                 CommonButton(
-                    text: "Masuk", onPressed: controller.validateForm
+                    text: "Daftar Sekarang", onPressed: controller.validateForm
                 ),
                 
                 Container(
@@ -84,13 +97,13 @@ class LoginPageView extends GetView<LoginPageController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Pengguna Baru?", style: tsBodyMedium),
+                    Text("Punya Akun?", style: tsBodyMedium),
 
                     const SizedBox(width: 3,),
 
                     InkWell(
-                      onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
-                      child: Text("Daftar", style: tsBodyMedium.copyWith(
+                      onTap: () => Get.toNamed(Routes.REGISTER_PAGE),
+                      child: Text("Masuk", style: tsBodyMedium.copyWith(
                         color: primaryColor,
                         fontWeight: FontWeight.w600,
                       ),),
