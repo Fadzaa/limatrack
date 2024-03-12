@@ -5,6 +5,7 @@ abstract class Routes {
   static const SPLASH_PAGE = _Paths.SPLASH_PAGE;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const ONBOARDING_PAGE = _Paths.ONBOARDING_PAGE;
+  static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
 }
 
 abstract class _Paths {
@@ -12,4 +13,5 @@ abstract class _Paths {
   static const SPLASH_PAGE = '/';
   static const HOME_PAGE = '/home-page';
   static const ONBOARDING_PAGE = '/onboarding-page';
+  static const LOGIN_PAGE = '/login-page';
 }
