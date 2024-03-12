@@ -8,6 +8,9 @@ import 'package:limatrack_genetic/app/pages/initial_pages/onboarding_page/onboar
 import 'package:limatrack_genetic/app/pages/initial_pages/splash_screen/splash_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/splash_screen/splash_page_view.dart';
 
+import '../pages/initial_pages/register_page/register_page_binding.dart';
+import '../pages/initial_pages/register_page/register_page_view.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -35,6 +38,12 @@ class AppPages {
       name: _Paths.ONBOARDING_PAGE,
       page: () => const OnboardingPageView(),
       binding: OnboardingPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.REGISTER_PAGE,
+      page: () => const RegisterPageView(),
+      binding: RegisterPageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(
