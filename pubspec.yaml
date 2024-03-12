@@ -32,7 +32,7 @@ dependencies:
   flutter_svg: ^2.0.7
   get: ^4.6.6
   shimmer:
-  google_fonts:
+  google_fonts: ^6.2.1
   flutter:
     sdk: flutter
 

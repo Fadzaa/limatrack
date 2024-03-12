@@ -81,57 +81,57 @@ const Color warningColor = Color(0xFFFFC700);
 const Color dangerColor = Color(0xFFFB3900);
 
 //HEADING
-const TextStyle tsHeadingLarge = TextStyle(
+ TextStyle tsHeadingLarge = GoogleFonts.poppins(
   fontSize: 28,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsHeadingMedium = TextStyle(
+ TextStyle tsHeadingMedium = GoogleFonts.poppins(
   fontSize: 26,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsHeadingSmall = TextStyle(
+ TextStyle tsHeadingSmall = GoogleFonts.poppins(
   fontSize: 24,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
 //TITLE
-const TextStyle tsTitleLarge = TextStyle(
+ TextStyle tsTitleLarge = GoogleFonts.poppins(
   fontSize: 22,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsTitleMedium = TextStyle(
+ TextStyle tsTitleMedium = GoogleFonts.poppins(
   fontSize: 20,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsTitleSmall = TextStyle(
+ TextStyle tsTitleSmall = GoogleFonts.poppins(
   fontSize: 18,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
 //BODY
-const TextStyle tsBodyLarge = TextStyle(
+ TextStyle tsBodyLarge = GoogleFonts.poppins(
   fontSize: 16,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsBodyMedium = TextStyle(
+ TextStyle tsBodyMedium = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsBodySmall = TextStyle(
+ TextStyle tsBodySmall = GoogleFonts.poppins(
   fontSize: 12,
   fontWeight: FontWeight.normal,
   color: blackColor,
@@ -139,19 +139,19 @@ const TextStyle tsBodySmall = TextStyle(
 
 //LABEL
 
-const TextStyle tsLabelLarge = TextStyle(
+TextStyle tsLabelLarge = GoogleFonts.poppins(
   fontSize: 10,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsLabelMedium = TextStyle(
+TextStyle tsLabelMedium = GoogleFonts.poppins(
   fontSize: 8,
   fontWeight: FontWeight.normal,
   color: blackColor,
 );
 
-const TextStyle tsLabelSmall = TextStyle(
+TextStyle tsLabelSmall = GoogleFonts.poppins(
   fontSize: 6,
   fontWeight: FontWeight.normal,
   color: blackColor,
