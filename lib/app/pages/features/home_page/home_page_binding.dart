@@ -1,7 +1,8 @@
 
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/home_page_controller.dart';
 
-import 'package:limatrack_genetic/app/pages/home_page/home_page_controller.dart';
+
 
 class HomePageBinding extends Bindings {
   @override
