@@ -18,11 +18,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Container(
-        child: Center(
-          child: Text('Hello World !')
-        ),
-      ),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );
