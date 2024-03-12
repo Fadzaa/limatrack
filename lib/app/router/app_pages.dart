@@ -5,6 +5,8 @@ import 'package:limatrack_genetic/app/pages/initial_pages/login_page/login_page_
 import 'package:limatrack_genetic/app/pages/initial_pages/login_page/login_page_view.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/onboarding_page/onboarding_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/onboarding_page/onboarding_page_view.dart';
+import 'package:limatrack_genetic/app/pages/initial_pages/otp_verification_page/otp_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/initial_pages/otp_verification_page/otp_page_view.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/splash_screen/splash_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/splash_screen/splash_page_view.dart';
 
@@ -50,6 +52,12 @@ class AppPages {
       name: _Paths.LOGIN_PAGE,
       page: () => const LoginPageView(),
       binding: LoginPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.OTP_VERIFICATION_PAGE,
+      page: () => const OtpPageView(),
+      binding: OtpPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
