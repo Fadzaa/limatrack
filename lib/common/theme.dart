@@ -77,7 +77,8 @@ const Color primaryColor = Color(0xFF6149C3);
 const Color blackColor = Color(0xFF1D1D1D);
 const Color greyColor = Color(0xFF707070);
 const Color secondaryColor = Color(0xFFF654AE);
-const Color warningColor = Color(0xFFFFC700);
+const Color warningColor = Color(0xFFD3A500);
+const Color warningColorLight = Color(0xFFFCFCDD);
 const Color dangerColor = Color(0xFFFB3900);
 
 //HEADING
