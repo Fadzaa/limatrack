@@ -9,6 +9,7 @@ class DotIndicator extends StatelessWidget {
 
   final bool isActive;
 
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -17,7 +18,7 @@ class DotIndicator extends StatelessWidget {
         height: 10,
         width: isActive ? 30 : 10,
         decoration: BoxDecoration(
-          color: isActive ? blackColor : greyColor.withOpacity(0.5),
+          color: isActive ? primaryColor : greyColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
