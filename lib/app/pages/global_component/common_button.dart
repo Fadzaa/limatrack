@@ -8,25 +8,29 @@ class CommonButton extends StatelessWidget {
     super.key,
      required this.text,
      required this.onPressed,
+     this.width,
+     this.height,
      this.style
    });
 
     String text;
-    VoidCallback onPressed;
+    double? width;
+    double? height;
+    VoidCallback? onPressed;
     TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onPressed,
+        onPressed: onPressed ?? null,
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryColor,
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          fixedSize: Size(width ?? double.maxFinite, height ?? 0),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
           ),
+          disabledBackgroundColor: const Color(0xFFBABABA)
         ),
-
         child: Text(
           text,
           style: style ?? tsBodyMedium.copyWith(

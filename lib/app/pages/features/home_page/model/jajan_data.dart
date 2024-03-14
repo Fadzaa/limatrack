@@ -6,25 +6,28 @@ final List <Jajan> jajan_data = [
   Jajan(
       image: exampleJajan,
       name: "Telur Gulung",
-      price: "2000",
+      price: 2000,
       description: "Telor digulung",
       isHalal: true,
-      rating: 4.5
+      rating: 4.5,
+      stockEmpty: false
   ),
   Jajan(
       image: exampleJajan,
       name: "Telur Gulung",
-      price: "2000",
+      price: 2000,
       description: "Telor digulung",
       isHalal: true,
-      rating: 4.5
+      rating: 4.5,
+      stockEmpty: false
   ),
   Jajan(
       image: exampleJajan,
       name: "Telur Gulung",
-      price: "2000",
+      price: 2000,
       description: "Telor digulung",
       isHalal: true,
-      rating: 4.5
+      rating: 4.5,
+      stockEmpty: true
   ),
 ];
