@@ -1,11 +1,13 @@
 String images = 'assets/image/';
 String svgImages = 'assets/svg/';
 
+
 //CONSTANT IMAGE
 String logoPrimary = '${images}logo_primary.png';
 String logoSecondary = '${images}logo_secondary.png';
 String icHalal = '${images}ic_halal.png';
 String exampleJajan = '${images}example_jajan.png';
+String exampleJajanRectangle = '${images}example_jajan_rectangle.png';
 String exampleAds = '${images}example_ads.png';
 
 //CONSTANT SVG
@@ -19,7 +21,19 @@ String icPerson = '${svgImages}ic_person.svg';
 String icPersonOutline = '${svgImages}ic_person_outline.svg';
 String icWarning = '${svgImages}ic_warning.svg';
 String icStar = '${svgImages}ic_star.svg';
+String icStarSecondary = '${svgImages}ic_star_secondary.svg';
 String icNotification = '${svgImages}ic_notification.svg';
+String icArrowRight = '${svgImages}ic_arrow_right.svg';
+String icBookmark = '${svgImages}ic_bookmark.svg';
+String icCloseWhite = '${svgImages}ic_close_white.svg';
+String icLocation = '${svgImages}ic_location.svg';
+String icLocationSecondary = '${svgImages}ic_location_secondary.svg';
+String icMessageFill = '${svgImages}ic_message_fill.svg';
+String icPriceTag = '${svgImages}ic_pricetag.svg';
+String icPriceTagSecondary = '${svgImages}ic_pricetag_secondary.svg';
+String icTime = '${svgImages}ic_time.svg';
+String icCartFill = '${svgImages}ic_cart_fill.svg';
+String icCartSecondary = '${svgImages}ic_cart_secondary.svg';
 String onboardFood = '${svgImages}onboard_food.svg';
 String onboardLocation = '${svgImages}onboard_location.svg';
 String onboardSocmed = '${svgImages}onboard_socmed.svg';

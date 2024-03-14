@@ -1,6 +1,7 @@
 class Jajan {
-  final String image, name, price, description;
-  final bool isHalal;
+  final String image, name, description;
+  final bool isHalal, stockEmpty;
+  final int price;
   final double rating;
 
   Jajan({
@@ -9,7 +10,8 @@ class Jajan {
     required this.price,
     required this.description,
     required this.isHalal,
-    required this.rating
+    required this.rating,
+    required this.stockEmpty
   });
 
 }

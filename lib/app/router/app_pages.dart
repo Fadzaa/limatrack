@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_view.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/login_page/login_page_binding.dart';
@@ -20,7 +22,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.HOME_PAGE;
+  static const INITIAL = Routes.DETAIL_DAGANG_PAGE;
 
   static final routes = [
     GetPage(
@@ -58,6 +60,12 @@ class AppPages {
       name: _Paths.OTP_VERIFICATION_PAGE,
       page: () => const OtpPageView(),
       binding: OtpPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_DAGANG_PAGE,
+      page: () => const DetailPageView(),
+      binding: DetailPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
