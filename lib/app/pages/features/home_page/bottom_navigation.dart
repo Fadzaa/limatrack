@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:limatrack_genetic/app/pages/features/explore_page/explore_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_view.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
@@ -12,11 +13,11 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   final tabs = [
     const HomePageView(),
-    Container(child: Center(child: Text("Explore Page"),),),
+    const ExplorePageView(),
     Container(child: Center(child: Text("Order Page"),),),
     Container(child: Center(child: Text("Chat Page"),),),
     Container(child: Center(child: Text("Profile Page"),),),
