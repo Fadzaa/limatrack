@@ -8,6 +8,7 @@ String logoSecondary = '${images}logo_secondary.png';
 String icHalal = '${images}ic_halal.png';
 String icCashPayment = '${images}ic_cash_payment.png';
 String icDana = '${images}ic_dana.png';
+String successVector = '${images}success_vector.png';
 String exampleJajan = '${images}example_jajan.png';
 String exampleJajanRectangle = '${images}example_jajan_rectangle.png';
 String exampleAds = '${images}example_ads.png';

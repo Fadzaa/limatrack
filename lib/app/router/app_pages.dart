@@ -5,6 +5,8 @@ import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_p
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_view.dart';
+import 'package:limatrack_genetic/app/pages/features/payment_page/payment_success_page.dart';
+import 'package:limatrack_genetic/app/pages/features/payment_page/rincian_pembayaran_page.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/login_page/login_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/login_page/login_page_view.dart';
 import 'package:limatrack_genetic/app/pages/initial_pages/onboarding_page/onboarding_page_binding.dart';
@@ -24,7 +26,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.CART_PAGE;
+  static const INITIAL = Routes.DETAIL_PAYMENT_PAGE;
 
   static final routes = [
     GetPage(
@@ -76,5 +78,21 @@ class AppPages {
       binding: CartPageBinding(),
       transition: Transition.noTransition,
     ),
+    GetPage(
+      name: _Paths.ORDER_SUCCESS_PAGE,
+      page: () => const PaymentSuccessPage(isOrder: true),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_SUCCESS_PAGE,
+      page: () => const PaymentSuccessPage(isOrder: false),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PAYMENT_PAGE,
+      page: () => const RincianPembayaranPage(),
+      transition: Transition.noTransition,
+    ),
+
   ];
 }

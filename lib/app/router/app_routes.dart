@@ -10,6 +10,9 @@ abstract class Routes {
   static const OTP_VERIFICATION_PAGE = _Paths.OTP_VERIFICATION_PAGE;
   static const DETAIL_DAGANG_PAGE = _Paths.DETAIL_DAGANG_PAGE;
   static const CART_PAGE = _Paths.CART_PAGE;
+  static const ORDER_SUCCESS_PAGE = _Paths.ORDER_SUCCESS_PAGE;
+  static const DETAIL_PAYMENT_PAGE = _Paths.DETAIL_PAYMENT_PAGE;
+  static const PAYMENT_SUCCESS_PAGE = _Paths.PAYMENT_SUCCESS_PAGE;
 }
 
 abstract class _Paths {
@@ -22,4 +25,7 @@ abstract class _Paths {
   static const OTP_VERIFICATION_PAGE = '/otp-page';
   static const DETAIL_DAGANG_PAGE = '/detail-dagang-page';
   static const CART_PAGE = '/cart-page';
+  static const ORDER_SUCCESS_PAGE = '/order-success-page';
+  static const DETAIL_PAYMENT_PAGE = '/detail-payment-page';
+  static const PAYMENT_SUCCESS_PAGE = '/payment-success-page';
 }

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_controller.dart';
+import 'package:limatrack_genetic/app/pages/features/cart_page/model/pembayaran_data.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/metode_pembayaran_section.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/pesanan_kamu_section.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/rincian_pembayaran_section.dart';
+import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/widget/floating_bottom_cart.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
+import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 import '../../../../common/constant.dart';
@@ -35,30 +39,73 @@ class CartPageView extends GetView<CartPageController> {
             ],
         )
       ),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                MessageNote(),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          const SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    MessageNote(),
 
-                SizedBox(height: 20,),
+                    SizedBox(height: 20,),
 
-                PesananKamuSection(),
+                    PesananKamuSection(),
 
-                SizedBox(height: 20,),
+                    SizedBox(height: 20,),
 
-                RincianPembayaranSection(),
+                    RincianPembayaranSection(),
 
-                SizedBox(height: 20,),
+                    SizedBox(height: 20,),
 
-                MetodePembayaranSection(),
-              ],
+                    MetodePembayaranSection(),
+
+                    SizedBox(height: 125,)
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            height: 125,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Obx(() => Row(
+                  children: [
+                    Image.asset(pembayaran_data[controller.selectedIndex.value].image),
+
+                    const SizedBox(width: 10,),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(pembayaran_data[controller.selectedIndex.value].name, style: tsLabelLarge.copyWith(
+                            fontWeight: FontWeight.w600
+                        ),),
+
+                        Text("${controller.totalPrice.value}", style: tsLabelLarge),
+
+                      ],
+                    ),
+
+                  ],
+                ),),
+
+                const Spacer(),
+
+                CommonButton(text: "Pesan Sekarang", onPressed: () {}, height: 50, borderRadius: 32,)
+              ],
+            ),
+          )
+        ],
       ),
 
 
