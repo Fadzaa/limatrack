@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_controller.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
 
 import '../../../../../common/theme.dart';
 
@@ -9,11 +10,14 @@ class CounterJajan extends GetView<DetailPageController> {
     super.key,
     required this.counter,
     required this.price,
-    required this.isGrid
+    required this.isGrid,
+    required this.jajan
   });
 
   final RxInt counter, price;
   final bool isGrid;
+  final Jajan jajan;
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class CounterJajan extends GetView<DetailPageController> {
 
       children: [
         InkWell(
-          onTap: () => controller.decrementCounter(counter, price),
+          onTap: () => counter.value == 1 ? controller.removeDataJajan(counter, jajan) : controller.decrementCounter(counter, price),
           child: Obx(() => Container(
               height: isGrid ? 35 : 20,
               width: isGrid ? 35 : 20,
