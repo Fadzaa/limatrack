@@ -4,6 +4,7 @@ import 'package:limatrack_genetic/app/pages/features/chat_page/chat_page_view.da
 import 'package:limatrack_genetic/app/pages/features/explore_page/explore_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/order_page/order_page_view.dart';
+import 'package:limatrack_genetic/app/pages/features/profile_page/profile_page_view.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
@@ -15,14 +16,14 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 4;
 
   final tabs = [
     const HomePageView(),
     const ExplorePageView(),
     const OrderPageView(),
     const ChatPageView(),
-    Container(child: Center(child: Text("Profile Page"),),),
+    const ProfilePageView()
   ];
 
   @override

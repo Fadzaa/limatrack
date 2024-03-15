@@ -79,7 +79,7 @@ const Color greyColor = Color(0xFF707070);
 const Color secondaryColor = Color(0xFFF654AE);
 const Color warningColor = Color(0xFFD3A500);
 const Color warningColorLight = Color(0xFFFCFCDD);
-const Color dangerColor = Color(0xFFFB3900);
+const Color dangerColor = Color(0xFFC62D00);
 
 //HEADING
  TextStyle tsHeadingLarge = GoogleFonts.poppins(
