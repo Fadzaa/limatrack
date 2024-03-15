@@ -32,7 +32,8 @@ class SemuaJajananSection extends StatelessWidget {
                       name: jajan_data[index].name,
                       description: jajan_data[index].description,
                       price: jajan_data[index].price,
-                      stockEmpty: jajan_data[index].stockEmpty
+                      stockEmpty: jajan_data[index].stockEmpty,
+                      jajan: jajan_data[index],
                   ),
                 )
         )

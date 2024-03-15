@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/widget/counter_jajan.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
@@ -14,12 +15,14 @@ class ItemJajanGrid extends GetView<DetailPageController> {
     required this.name,
     required this.description,
     required this.price,
-    required this.stockEmpty
+    required this.stockEmpty,
+    required this.jajan
   });
 
   final String image, name, description;
   final int price;
   final bool stockEmpty;
+  final Jajan jajan;
 
 
 
@@ -105,8 +108,8 @@ class ItemJajanGrid extends GetView<DetailPageController> {
 
                 Obx(() =>
                 counter.value > 0
-                    ? CounterJajan(counter: counter, isGrid: true, price: price.obs,)
-                    : CommonButton(text: "Tambah", onPressed: stockEmpty ? null : () => controller.initialAddCounter(counter, price.obs), height: 34,)
+                    ? CounterJajan(counter: counter, isGrid: true, price: price.obs, jajan: jajan,)
+                    : CommonButton(text: "Tambah", onPressed: stockEmpty ? null : () => controller.initialAddCounter(counter, jajan), height: 34,)
                 ),
               ],
             ),

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_binding.dart';
@@ -22,7 +24,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.DETAIL_DAGANG_PAGE;
+  static const INITIAL = Routes.CART_PAGE;
 
   static final routes = [
     GetPage(
@@ -66,6 +68,12 @@ class AppPages {
       name: _Paths.DETAIL_DAGANG_PAGE,
       page: () => const DetailPageView(),
       binding: DetailPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.CART_PAGE,
+      page: () => const CartPageView(),
+      binding: CartPageBinding(),
       transition: Transition.noTransition,
     ),
   ];
