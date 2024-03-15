@@ -28,4 +28,5 @@ abstract class _Paths {
   static const ORDER_SUCCESS_PAGE = '/order-success-page';
   static const DETAIL_PAYMENT_PAGE = '/detail-payment-page';
   static const PAYMENT_SUCCESS_PAGE = '/payment-success-page';
+
 }

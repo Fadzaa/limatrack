@@ -14,13 +14,20 @@ String exampleJajanRectangle = '${images}example_jajan_rectangle.png';
 String exampleAds = '${images}example_ads.png';
 
 //CONSTANT SVG
-String icChat = '${svgImages}ic_chat.svg';
-String icExplore = '${svgImages}ic_explore.svg';
-String icGoogle = '${svgImages}ic_google.svg';
 String icHome = '${svgImages}ic_home.svg';
+String icHomeActive = '${svgImages}ic_home_active.svg';
+String icExplore = '${svgImages}ic_explore.svg';
+String icExploreActive = '${svgImages}ic_explore_active.svg';
+String icChat = '${svgImages}ic_chat.svg';
+String icChatActive = '${svgImages}ic_chat_active.svg';
+String icOrder = '${svgImages}ic_order.svg';
+String icOrderActive = '${svgImages}ic_order_active.svg';
+String icPerson = '${svgImages}ic_person.svg';
+String icPersonActive = '${svgImages}ic_person_active.svg';
+
+String icGoogle = '${svgImages}ic_google.svg';
 String icLockOutline = '${svgImages}ic_lock_outline.svg';
 String icMail = '${svgImages}ic_mail.svg';
-String icPerson = '${svgImages}ic_person.svg';
 String icPersonOutline = '${svgImages}ic_person_outline.svg';
 String icWarning = '${svgImages}ic_warning.svg';
 String icStar = '${svgImages}ic_star.svg';
