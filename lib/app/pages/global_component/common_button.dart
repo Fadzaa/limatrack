@@ -10,7 +10,8 @@ class CommonButton extends StatelessWidget {
      required this.onPressed,
      this.width,
      this.height,
-     this.style
+     this.style,
+     this.borderRadius
    });
 
     String text;
@@ -18,6 +19,7 @@ class CommonButton extends StatelessWidget {
     double? height;
     VoidCallback? onPressed;
     TextStyle? style;
+    double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CommonButton extends StatelessWidget {
           backgroundColor: primaryColor,
           fixedSize: Size(width ?? double.maxFinite, height ?? 0),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)
+              borderRadius: BorderRadius.circular(borderRadius ?? 16)
           ),
           disabledBackgroundColor: const Color(0xFFBABABA)
         ),
