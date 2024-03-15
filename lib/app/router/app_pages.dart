@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/chat_page/chat_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/explore_page/explore_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/bottom_navigation.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_binding.dart';
@@ -37,7 +38,8 @@ class AppPages {
       bindings:  [
         HomePageBinding(),
         ExplorePageBinding(),
-        OrderPageBinding()
+        OrderPageBinding(),
+        ChatPageBinding()
       ],
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
