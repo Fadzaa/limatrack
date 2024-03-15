@@ -4,8 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/explore_page/items/item_explore_vertical.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/item_jajan_vertical.dart';
 import 'package:limatrack_genetic/app/pages/global_component/bottom_sheet/detail_jajan_bottom_sheet.dart';
+import 'package:limatrack_genetic/app/pages/global_component/not_found_page/not_found_page.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 import 'explore_page_controller.dart';
@@ -106,8 +108,8 @@ class ExplorePageView extends GetView<ExplorePageController> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
-                  child: ListView.builder(
-                    itemCount: 4,
+                  child: jajan_data.length != 0 ? ListView.builder(
+                    itemCount: jajan_data.length,
                       itemBuilder: (context, index) =>
                           InkWell(
                             onTap: () => detailJajanBottomSheet(),
@@ -118,6 +120,10 @@ class ExplorePageView extends GetView<ExplorePageController> {
                               price: 10000,
                             ),
                           )
+                  ) : NotFoundPage(
+                      image: notFoundExplore,
+                      title: "Kami Tidak Menemukannya",
+                      subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
                   ),
                 ),
               ),

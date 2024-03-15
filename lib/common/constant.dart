@@ -50,3 +50,4 @@ String noteVector = '${svgImages}note_vector.svg';
 String onboardFood = '${svgImages}onboard_food.svg';
 String onboardLocation = '${svgImages}onboard_location.svg';
 String onboardSocmed = '${svgImages}onboard_socmed.svg';
+String notFoundExplore = '${svgImages}not_found_explore.svg';
