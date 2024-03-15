@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:limatrack_genetic/app/pages/features/bottom_sheet/metode_pembayaran_bottom_sheet.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_controller.dart';
+import 'package:limatrack_genetic/app/pages/global_component/bottom_sheet/metode_pembayaran_bottom_sheet.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 

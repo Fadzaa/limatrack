@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:limatrack_genetic/app/pages/features/bottom_sheet/detail_jajan_bottom_sheet.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/items/item_jajan_detail_vertical.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
+import 'package:limatrack_genetic/app/pages/global_component/bottom_sheet/detail_jajan_bottom_sheet.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
 class SemuaJajananSection extends StatelessWidget {
