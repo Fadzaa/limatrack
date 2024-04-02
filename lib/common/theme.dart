@@ -88,6 +88,7 @@ const Color dangerColor = Color(0xFFC62D00);
   color: blackColor,
 );
 
+
  TextStyle tsHeadingMedium = GoogleFonts.poppins(
   fontSize: 26,
   fontWeight: FontWeight.normal,
