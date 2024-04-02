@@ -69,7 +69,13 @@ class ChatPageView extends GetView<ChatPageController> {
                             unread: true,
                             unreadCount: 2
                         )
-                )
+                ),
+
+                // NotFoundPage(
+                //     image: notFoundExplore,
+                //     title: "Kami Tidak Menemukannya",
+                //     subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
+                // ),
 
 
               ],
