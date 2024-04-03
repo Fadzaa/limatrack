@@ -115,7 +115,7 @@ class OtpPageView extends GetView<OtpPageController> {
                 const SizedBox(height: 30,),
 
                 CommonButton(
-                    text: "Verifikasi", onPressed: () => Get.toNamed(Routes.HOME_PAGE)
+                    text: "Verifikasi", onPressed: () => Get.toNamed(Routes.HOME_PAGE), height: 45,
                 ),
 
                 const SizedBox(height: 10,),

@@ -52,7 +52,10 @@ class Header extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(icCloseWhite),
+              InkWell(
+                onTap: () => Get.back(),
+                child: SvgPicture.asset(icCloseWhite),
+              ),
 
               Row(
                 children: [

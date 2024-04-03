@@ -36,7 +36,7 @@ class RegisterPageController extends GetxController {
       Get.snackbar('Error', 'Password does not match');
     } else {
       Get.snackbar('Success', 'Form is valid');
-      Get.toNamed(Routes.HOME_PAGE);
+      Get.toNamed(Routes.OTP_VERIFICATION_PAGE);
     }
   }
 

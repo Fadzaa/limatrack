@@ -57,12 +57,15 @@ class CommonButtonGoogle extends StatelessWidget {
     return ElevatedButton(
         onPressed: () => null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            shadowColor: Colors.black.withOpacity(0.5),
+            foregroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 20),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
           ),
-          elevation: 2
+          elevation: 1.2
         ),
 
 
@@ -104,6 +107,7 @@ class CommonButtonOutline extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 20),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
@@ -111,7 +115,7 @@ class CommonButtonOutline extends StatelessWidget {
                 color: primaryColor,
                 width: 1
               )
-          ),
+          )
         ),
 
         child: Text(
