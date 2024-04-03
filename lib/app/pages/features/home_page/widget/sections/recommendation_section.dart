@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/item_jajan_horizontal.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/section_text.dart';
@@ -40,11 +41,14 @@ class RecommendationSection extends StatelessWidget {
 
               itemCount: jajan_data.length,
               itemBuilder: (context, index) =>
-                  ItemJajanHorizontal(
-                      image: jajan_data[index].image,
-                      name: jajan_data[index].name,
-                      rating: jajan_data[index].rating,
-                      isHalal: jajan_data[index].isHalal
+                  InkWell(
+                    onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: jajan_data[index]),
+                    child: ItemJajanHorizontal(
+                        image: jajan_data[index].image,
+                        name: jajan_data[index].name,
+                        rating: jajan_data[index].rating,
+                        isHalal: jajan_data[index].isHalal
+                    ),
                   )
           ),
         )

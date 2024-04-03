@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/advertise_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/nearest_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/recommendation_section.dart';
@@ -15,6 +16,8 @@ class HomePageView extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
         title: SizedBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +34,7 @@ class HomePageView extends GetView<HomePageController> {
                       ),
                       ),
 
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
 
                       Text(" RadyaHarbani👋", style: tsBodyMedium),
                     ],
@@ -50,6 +53,7 @@ class HomePageView extends GetView<HomePageController> {
             ],
           )
         ),
+        automaticallyImplyLeading: false,
 
       ),
 
@@ -60,16 +64,21 @@ class HomePageView extends GetView<HomePageController> {
               Container(
                 color: Colors.grey[200],
                 height: MediaQuery.of(context).size.height * 0.7,
-                child: Center(
-                  child: Text("Ini Map"),
-                ),
+                child: const GoogleMap(
+                  initialCameraPosition:  CameraPosition(
+                    target: LatLng(-6.966667, 110.416664),
+                    zoom: 15,
+                  ),
+                )
               ),
 
               const ContainerContent(),
             ],
           ),
         ),
-      )
+      ),
+      backgroundColor: baseColor,
+      resizeToAvoidBottomInset: false,
     );
   }
 }
