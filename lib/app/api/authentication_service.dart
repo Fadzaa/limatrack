@@ -17,43 +17,49 @@ class AuthenticationService {
     }
   }
 
-  Future<Response> register(String name, String email, String password) async {
+  Future<Response> register(String name, String email, String password, String otp) async {
     try {
       final response =  await dio.post(ApiEndPoint.register, data: {
-        'name': name,
+        'nama_lengkap': name,
         'email': email,
         'password': password,
+        'otp': otp,
       });
 
-       return response.data;
+       return response;
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  // Future<dynamic> otpVerification(String email, String otp) async {
-  //   try {
-  //     final response =  await dio.post(ApiEndPoint.otpVerification, data: {
-  //       'email': email,
-  //       'otp': otp,
-  //     });
-  //
-  //      return response.data;
-  //   } catch (e) {
-  //     return e;
-  //   }
-  // }
-
-
-  Future<dynamic> logout(String email) async {
+  Future<Response> otpVerification(String email) async {
     try {
-      final response =  await dio.post(ApiEndPoint.logout, data: {
+      final response =  await dio.post(ApiEndPoint.otpVerification, data: {
         'email': email,
       });
 
-       return response.data;
+       return response;
     } catch (e) {
-      return e;
+      throw Exception(e);
+    }
+  }
+
+
+  Future<Response> logout(String token) async {
+    try {
+      final response =  await dio.delete(
+        ApiEndPoint.logout,
+
+        options: Options(
+          headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer $token",
+          })
+      );
+
+       return response;
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

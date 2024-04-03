@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class LoadingOverlay extends StatelessWidget {
   const LoadingOverlay({
     super.key,
-    required this.child,
     required this.isLoading,
+    required this.child,
   });
 
   final Widget child;
