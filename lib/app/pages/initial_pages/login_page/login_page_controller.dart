@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:limatrack_genetic/app/api/authentication_service.dart';
+import 'package:limatrack_genetic/app/api/auth/authentication_service.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +24,7 @@ class LoginPageController extends GetxController {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       prefs.setString('token', response.data['token']);
-      Get.snackbar("Login Success", "Welcome Back!" );
+      Get.snackbar("Login Success", "Welcome Back!");
       Get.offAllNamed(Routes.HOME_PAGE);
 
 
