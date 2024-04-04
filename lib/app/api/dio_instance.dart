@@ -8,7 +8,6 @@ class DioInstance {
 
   //Late needed for nullable variable so that it can be initialized later
   late Dio _dio;
-  late String _token;
 
 
   //Initialize all the required instances (dio, shared preferences, token)
@@ -18,9 +17,7 @@ class DioInstance {
         baseUrl: ApiEndPoint.baseUrl,
       )
     );
-    SharedPreferences.getInstance().then((prefs) {
-      _token = prefs.getString('token') ?? "";
-    });
+
 
     initializeInterceptors();
   }
@@ -29,13 +26,15 @@ class DioInstance {
   //All Method of Requests
   Future<Response> getRequest({required String endpoint, bool? isAuthorize, Map<String, dynamic>? queryParameters}) async {
     Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
 
     try {
       response = await _dio.get(endpoint, queryParameters: queryParameters,
         options: Options(
             headers: {
               "Accept": "application/json",
-              if(isAuthorize ?? false) "Authorization": "Bearer $_token"
+              if(isAuthorize ?? false) "Authorization": "Bearer $token"
             }),
       );
     } on DioException catch (e) {
@@ -49,7 +48,8 @@ class DioInstance {
 
   Future<Response> postRequest({required String endpoint, bool? isAuthorize, required Object data}) async {
     Response response;
-
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
     try {
       response = await _dio.post(
           endpoint,
@@ -57,7 +57,7 @@ class DioInstance {
           options: Options(
               headers: {
                 "Accept": "application/json",
-                if(isAuthorize ?? false) "Authorization": "Bearer $_token"
+                if(isAuthorize ?? false) "Authorization": "Bearer $token"
               })
       );
 
@@ -72,6 +72,8 @@ class DioInstance {
 
   Future<Response> putRequest({required String endpoint,  bool? isAuthorize, required Object data}) async {
     Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
 
     try {
       response = await _dio.put(
@@ -80,7 +82,7 @@ class DioInstance {
           options: Options(
               headers: {
                 "Accept": "application/json",
-                if(isAuthorize ?? false) "Authorization": "Bearer $_token"
+                if(isAuthorize ?? false) "Authorization": "Bearer $token"
               })
       );
 
@@ -94,6 +96,8 @@ class DioInstance {
 
   Future<Response> deleteRequest({required String endpoint, bool? isAuthorize}) async {
     Response response;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
 
     try {
       response = await _dio.delete(
@@ -101,7 +105,7 @@ class DioInstance {
           options: Options(
               headers: {
                 "Accept": "application/json",
-                if(isAuthorize ?? false) "Authorization": "Bearer $_token"
+                if(isAuthorize ?? false) "Authorization": "Bearer $token"
               })
       );
 
@@ -129,6 +133,7 @@ class DioInstance {
           },
 
           onResponse: (response, handler) {
+            print(response.data);
             return handler.next(response);
           }
         )
