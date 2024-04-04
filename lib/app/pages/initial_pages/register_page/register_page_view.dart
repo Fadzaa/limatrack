@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:limatrack_genetic/app/api/authentication_service.dart';
+import 'package:limatrack_genetic/app/api/auth/authentication_service.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_textfield.dart';
 import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
