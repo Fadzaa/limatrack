@@ -4,21 +4,24 @@ import 'package:limatrack_genetic/app/api/auth/authentication_service.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 
 class OtpPageController extends GetxController {
-  TextEditingController otpNumberController = TextEditingController();
+  late TextEditingController otpNumberController;
 
-  AuthenticationService authenticationService = AuthenticationService();
+  late AuthenticationService authenticationService;
   RxBool isLoading = false.obs;
 
   var arguments = Get.arguments;
 
   @override
   void onInit() {
+    otpNumberController = TextEditingController();
+
+    authenticationService = AuthenticationService();
     super.onInit();
   }
 
   Future<void> register() async {
     try {
-      isLoading.value = true;
+      isLoading(true);
       await authenticationService.register(
         arguments['name'], arguments['email'], arguments['password'], otpNumberController.text
       );
@@ -27,10 +30,10 @@ class OtpPageController extends GetxController {
       Get.offAllNamed(Routes.HOME_PAGE);
 
     } catch (e) {
-      isLoading.value = true;
+      isLoading(false);
       Get.snackbar("Register Failed", "Network Error" + e.toString());
     }finally {
-      isLoading.value = false;
+      isLoading(false);
     }
   }
 

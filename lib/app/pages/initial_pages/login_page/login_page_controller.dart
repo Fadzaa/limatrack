@@ -6,11 +6,20 @@ import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
 
   RxBool isLoading = false.obs;
-  AuthenticationService authenticationService = AuthenticationService();
+  late AuthenticationService authenticationService;
+
+  @override
+  void onInit() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+
+    authenticationService = AuthenticationService();
+    super.onInit();
+  }
 
 
   Future<void> login() async {
@@ -38,5 +47,6 @@ class LoginPageController extends GetxController {
       isLoading(false);
     }
   }
+
 
 }
