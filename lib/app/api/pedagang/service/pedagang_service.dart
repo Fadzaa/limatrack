@@ -5,15 +5,64 @@ import 'package:limatrack_genetic/app/api/dio_instance.dart';
 class PedagangService {
   final DioInstance _dioInstance = DioInstance();
 
-  Future<Response> getPedagangAll(String token, bool terdekat, double rating, bool sertifikasi_halal) async {
+  Future<Response> getPedagangAll() async {
+    try {
+      Future.delayed(const Duration(seconds: 2), () {
+        print('Delay 2 detik');
+      });
+      final response = await _dioInstance.getRequest(
+          endpoint: ApiEndPoint.pedagangAll,
+          isAuthorize: true,
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getPedagangNearest() async {
+    try {
+      Future.delayed(const Duration(seconds: 2), () {
+        print('Delay 2 detik');
+      });
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.pedagangAll,
+        isAuthorize: true,
+        queryParameters: {
+          'terdekat': true
+        }
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getPedagangHalal() async {
     try {
       final response = await _dioInstance.getRequest(
           endpoint: ApiEndPoint.pedagangAll,
           isAuthorize: true,
           queryParameters: {
-            'terdekat': terdekat,
-            'rating': rating,
-            'sertifikasi_halal': sertifikasi_halal
+            'sertifikasi_halal': true
+          }
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getPedagangRating() async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: ApiEndPoint.pedagangAll,
+          isAuthorize: true,
+          queryParameters: {
+            'rating': 4.5
           }
       );
 
