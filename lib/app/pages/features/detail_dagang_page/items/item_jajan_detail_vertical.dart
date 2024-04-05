@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/widget/counter_jajan.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
@@ -22,7 +23,7 @@ class ItemJajanDetailVertical extends GetView<DetailPageController> {
   final String image, name, description;
   final int price;
   final bool stockEmpty;
-  final Jajan jajan;
+  final JajananModel jajan;
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +41,18 @@ class ItemJajanDetailVertical extends GetView<DetailPageController> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              stockEmpty ? Container(
+              !stockEmpty ? Container(
                 foregroundDecoration: const BoxDecoration(
                   color: Color(0xFFBABABA),
                   backgroundBlendMode: BlendMode.saturation,
                 ),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(image, fit: BoxFit.fitWidth, width: 100, height: 100, )
+                    child: Image.network(image, fit: BoxFit.cover, width: 100, height: 120, )
                 ),
               ) : ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(image, fit: BoxFit.fitWidth, width: 100, height: 100, )
+                  child: Image.network(image, fit: BoxFit.cover, width: 100, height: 120, )
               ),
               
 
@@ -72,20 +73,23 @@ class ItemJajanDetailVertical extends GetView<DetailPageController> {
 
                         const SizedBox(height: 5,),
 
-                        Text(description, style: tsLabelLarge.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xFFBABABA)
+                        Flexible(child: SizedBox(
+                          width: 150,
+                          child: Text(description, style: tsLabelLarge.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: const Color(0xFFBABABA)
+                          ),),
                         ),),
 
                         const SizedBox(height: 5,),
 
                         Row(
                           children: [
-                            SvgPicture.asset(icPriceTagSecondary, color: stockEmpty ? const Color(0xFFBABABA) : secondaryColor),
+                            SvgPicture.asset(icPriceTagSecondary, color: !stockEmpty ? const Color(0xFFBABABA) : secondaryColor),
 
                             const SizedBox(width: 5,),
 
-                            Text(stockEmpty ? "Habis" : "Rp. " + price.toString(), style: tsBodySmall.copyWith(
+                            Text(!stockEmpty ? "Habis" : "Rp. " + price.toString(), style: tsBodySmall.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: stockEmpty ? const Color(0xFFBABABA) : secondaryColor
                             ),),
@@ -112,7 +116,7 @@ class ItemJajanDetailVertical extends GetView<DetailPageController> {
               child: CounterJajan(counter: counter, isGrid: false, price: price.obs, jajan: jajan))
 
               : ElevatedButton(
-              onPressed: stockEmpty ? null : () => controller.initialAddCounter(counter, jajan),
+              onPressed: !stockEmpty ? null : () => controller.initialAddCounter(counter, jajan),
               style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(

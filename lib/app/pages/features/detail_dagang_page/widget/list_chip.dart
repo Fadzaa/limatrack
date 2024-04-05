@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_controller.dart';
 import '../../../../../common/constant.dart';
 import '../../../../../common/theme.dart';
 
-class ListChip extends StatelessWidget {
+class ListChip extends GetView<DetailPageController> {
   const ListChip({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String jarak = controller.warungModel.jarak;
+
+    String jarakFormat = jarak.length > 4 ? jarak.substring(0, 4) : jarak;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ChipLabel(icon: icStarSecondary, iconText: "5.0", label: "Rating"),
+        ChipLabel(icon: icStarSecondary, iconText: controller.warungModel.averageRating.toString(), label: "Rating"),
 
         Container(
           width: 1,
@@ -23,7 +28,7 @@ class ListChip extends StatelessWidget {
           ),
         ),
 
-        ChipLabel(icon: icLocationSecondary, iconText: "0.52 km", label: "Jarak Pedagang"),
+        ChipLabel(icon: icLocationSecondary, iconText: jarakFormat + "km", label: "Jarak Pedagang"),
 
         Container(
           width: 1,

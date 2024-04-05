@@ -30,14 +30,14 @@ class PesananKamuSection extends GetView<CartPageController> {
             itemCount: arguments.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) =>
-                ItemCartVertical(
-                image: exampleJajanRectangle,
-                name: arguments[index].name,
-                price: 1000.obs,
-                counter: 3.obs,
-                jajan: jajan_data[index],
-            )
+            itemBuilder: (context, index) => Container()
+            //     ItemCartVertical(
+            //     image: exampleJajanRectangle,
+            //     name: arguments[index].name,
+            //     price: 1000.obs,
+            //     counter: 3.obs,
+            //     jajan: jajan_data[index],
+            // )
         ),
 
         const SizedBox(height: 25,),

@@ -123,7 +123,7 @@ class OrderCompleteView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, indexFood) =>
                         InkWell(
-                          onTap: () => detailJajanBottomSheet(),
+                          // onTap: () => detailJajanBottomSheet(),
                           child: ItemOrderComplete(
                             image: list_order[index]["orders"][indexFood]["image"],
                             name: "Telur Gulung",
@@ -207,7 +207,7 @@ class OrderOngoingView extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, indexFood) =>
                       InkWell(
-                        onTap: () => detailJajanBottomSheet(),
+                        // onTap: () => detailJajanBottomSheet(),
                         child: ItemOrderOngoing(
                           image: list_order[index]["orders"][indexFood]["image"],
                           name: "Telur Gulung",

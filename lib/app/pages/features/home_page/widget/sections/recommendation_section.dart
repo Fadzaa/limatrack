@@ -52,11 +52,14 @@ class RecommendationSection extends GetView<HomePageController> {
                       itemBuilder: (context, index) {
                         final listWarung = controller.listWarung[index];
 
-                        return ItemJajanHorizontal(
-                          image: listWarung.banner,
-                          name: listWarung.namaWarung,
-                          rating: listWarung.averageRating,
-                          isHalal: listWarung.sertifikasiHalal,
+                        return InkWell(
+                          onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: {'id': listWarung.id}),
+                          child: ItemJajanHorizontal(
+                            image: listWarung.banner,
+                            name: listWarung.namaWarung,
+                            rating: listWarung.averageRating,
+                            isHalal: listWarung.sertifikasiHalal,
+                          ),
                         );
                       },
                     ),

@@ -112,7 +112,7 @@ class ExplorePageView extends GetView<ExplorePageController> {
                     itemCount: jajan_data.length,
                       itemBuilder: (context, index) =>
                           InkWell(
-                            onTap: () => detailJajanBottomSheet(),
+                            // onTap: () => detailJajanBottomSheet(),
                             child: ItemExploreVertical(
                               image: exampleJajanRectangle,
                               name: "Telur Gulung",

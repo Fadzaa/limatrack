@@ -77,6 +77,7 @@ class HomePageController extends GetxController {
     }
   }
 
+
   void changePage(int index) {
     pageController.animateToPage(index, duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut);
