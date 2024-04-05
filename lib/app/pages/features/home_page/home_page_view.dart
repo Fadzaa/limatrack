@@ -16,7 +16,7 @@ class HomePageView extends GetView<HomePageController> {
     required this.user
   });
 
-  UserModel user;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class HomePageView extends GetView<HomePageController> {
                     ],
                   ),
 
-                  Text("Ayo Lacak Pedagang Disekitarmu", style: tsBodySmall.copyWith(
+                  Text("Ayo Temukan Pedagang Di sekitarmu", style: tsBodySmall.copyWith(
                       fontWeight: FontWeight.w500,
                       color: const Color(0xFF707070).withOpacity(0.7)
                   ),)

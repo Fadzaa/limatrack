@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
@@ -14,9 +16,12 @@ class PaymentSuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Align(
+        title: Align(
           alignment: Alignment.topRight,
-          child: Icon(Icons.close, color: Colors.black, size: 30,)
+          child: InkWell(
+            onTap: () => Get.toNamed(Routes.HOME_PAGE),
+            child: const Icon(Icons.close, color: Colors.black, size: 30,),
+          )
       ),),
 
       body: Center(

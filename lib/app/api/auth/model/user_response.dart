@@ -6,7 +6,7 @@ part 'user_response.g.dart';
 
 @JsonSerializable()
 class UserResponse {
-  late UserModel data;
+  UserModel? data;
 
   UserResponse();
 
