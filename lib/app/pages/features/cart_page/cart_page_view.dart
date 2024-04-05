@@ -104,7 +104,7 @@ class CartPageView extends GetView<CartPageController> {
 
                 const Spacer(),
 
-                CommonButton(text: "Pesan Sekarang", onPressed: () {}, height: 50, borderRadius: 32,)
+                CommonButton(text: "Pesan Sekarang", onPressed: () => Get.toNamed(Routes.DETAIL_PAYMENT_PAGE), height: 50, borderRadius: 32,)
               ],
             ),
           )

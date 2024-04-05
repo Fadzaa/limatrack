@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
+import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
@@ -112,7 +114,7 @@ class RincianPembayaranPage extends StatelessWidget {
 
               const Spacer(),
 
-              CommonButton(text: "Bayar Sekarang", onPressed: () {}, height: 50,)
+              CommonButton(text: "Bayar Sekarang", onPressed: () => Get.toNamed(Routes.PAYMENT_SUCCESS_PAGE), height: 50,)
 
             ],
           ),

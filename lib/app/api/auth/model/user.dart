@@ -4,21 +4,21 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class UserModel {
-  late String id;
+  String? id;
   @JsonKey(name: 'nama_lengkap')
-  late String namaLengkap;
-  late String email;
-  late String role;
+  String?namaLengkap;
+  String? email;
+  String? role;
   @JsonKey(name: 'verified_email')
-  late String verifiedEmail;
+  String? verifiedEmail;
   @JsonKey(name: 'profile_picture')
-  late String? profilePicture;
-  late String? latitude;
-  late String? longitude;
+  String? profilePicture;
+  String? latitude;
+  String? longitude;
   @JsonKey(name: 'created_at')
-  late String createdAt;
+  String? createdAt;
   @JsonKey(name: 'updated_at')
-  late String updatedAt;
+  String? updatedAt;
 
   UserModel();
 

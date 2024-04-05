@@ -55,14 +55,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(user.namaLengkap, style: tsBodyMedium.copyWith(
+                            Text(user.namaLengkap ?? "", style: tsBodyMedium.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: blackColor
                             ),),
 
                             const SizedBox(height: 5,),
 
-                            Text(user.email, style: tsLabelLarge),
+                            Text(user.email ?? "", style: tsLabelLarge),
                           ],
                         ),
 
