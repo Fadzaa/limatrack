@@ -25,7 +25,7 @@ class CartPageView extends GetView<CartPageController> {
         title: Row(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE),
+              onTap: () => Get.back(),
                 child: SvgPicture.asset(icArrowLeft)
             ),
             
@@ -37,7 +37,10 @@ class CartPageView extends GetView<CartPageController> {
 
             const Spacer(),
             ],
-        )
+        ),
+        backgroundColor: baseColor,
+        foregroundColor: baseColor,
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
