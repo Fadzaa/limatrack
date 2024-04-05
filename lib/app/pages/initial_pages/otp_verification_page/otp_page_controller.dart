@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:limatrack_genetic/app/api/auth/authentication_service.dart';
+import 'package:limatrack_genetic/app/api/auth/service/authentication_service.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

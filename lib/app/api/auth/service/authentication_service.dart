@@ -65,4 +65,17 @@ class AuthenticationService {
       throw Exception(e);
     }
   }
+
+  Future<Response> showCurrentUser() async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: '${ApiEndPoint.baseUrl}/users/show',
+          isAuthorize: true
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

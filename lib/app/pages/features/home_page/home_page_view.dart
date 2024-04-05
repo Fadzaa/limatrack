@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:limatrack_genetic/app/api/auth/model/user.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/advertise_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/nearest_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/recommendation_section.dart';
@@ -10,7 +11,12 @@ import 'package:limatrack_genetic/common/theme.dart';
 import 'home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  const HomePageView({super.key});
+  HomePageView({
+    super.key,
+    required this.user
+  });
+
+  UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class HomePageView extends GetView<HomePageController> {
 
                       const SizedBox(height: 10,),
 
-                      Text(" RadyaHarbani👋", style: tsBodyMedium),
+                      Text(" ${user.namaLengkap}👋", style: tsBodyMedium),
                     ],
                   ),
 
