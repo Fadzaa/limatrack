@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/auth/model/user.dart';
 import 'package:limatrack_genetic/app/pages/features/profile_page/items/item_profile_vertical.dart';
 import 'package:limatrack_genetic/app/pages/features/profile_page/model/profile_data.dart';
 import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
@@ -10,7 +11,12 @@ import 'package:limatrack_genetic/common/theme.dart';
 import 'profile_page_controller.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  const ProfilePageView({super.key});
+  const ProfilePageView({
+    super.key,
+    required this.user
+  });
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +55,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Radya Harbani", style: tsBodyMedium.copyWith(
+                            Text(user.namaLengkap, style: tsBodyMedium.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: blackColor
                             ),),
 
                             const SizedBox(height: 5,),
 
-                            Text("radya@gmail.com", style: tsLabelLarge),
+                            Text(user.email, style: tsLabelLarge),
                           ],
                         ),
 
