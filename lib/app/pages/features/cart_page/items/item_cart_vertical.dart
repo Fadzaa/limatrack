@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/widget/counter_jajan.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
 import 'package:limatrack_genetic/common/constant.dart';
@@ -18,7 +19,7 @@ class ItemCartVertical extends StatelessWidget {
 
   final String image, name;
   final RxInt price, counter;
-  final Jajan jajan;
+  final JajananModel jajan;
 
   @override
   Widget build(BuildContext context) {

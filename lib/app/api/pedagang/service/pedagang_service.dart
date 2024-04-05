@@ -72,10 +72,10 @@ class PedagangService {
     }
   }
 
-  Future<Response> getPedagangById(String token, int id) async {
+  Future<Response> getPedagangById( String id) async {
     try {
       final response = await _dioInstance.getRequest(
-        endpoint: ApiEndPoint.pedagangById + '/$id',
+        endpoint: '${ApiEndPoint.pedagangById}/$id',
         isAuthorize: true,
       );
 

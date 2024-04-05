@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
 
@@ -16,7 +17,7 @@ class CounterJajan extends GetView<DetailPageController> {
 
   final RxInt counter, price;
   final bool isGrid;
-  final Jajan jajan;
+  final JajananModel jajan;
 
 
   @override
