@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/items/item_cart_vertical.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan.dart';
@@ -15,7 +16,7 @@ class PesananKamuSection extends GetView<CartPageController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Jajan> arguments = Get.arguments;
+    List<JajananModel> arguments = Get.arguments;
 
 
 

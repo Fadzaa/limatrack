@@ -11,4 +11,6 @@ class ApiEndPoint {
   //Pedagang
   static String pedagangAll = '$baseUrl/pedagang/show-all';
   static String pedagangById = '$baseUrl/pedagang/show';
+
+
 }
