@@ -13,6 +13,7 @@ abstract class Routes {
   static const ORDER_SUCCESS_PAGE = _Paths.ORDER_SUCCESS_PAGE;
   static const DETAIL_PAYMENT_PAGE = _Paths.DETAIL_PAYMENT_PAGE;
   static const PAYMENT_SUCCESS_PAGE = _Paths.PAYMENT_SUCCESS_PAGE;
+  static const LANGGANAN_PAGE = _Paths.LANGGANAN_PAGE;
 }
 
 abstract class _Paths {
@@ -28,5 +29,6 @@ abstract class _Paths {
   static const ORDER_SUCCESS_PAGE = '/order-success-page';
   static const DETAIL_PAYMENT_PAGE = '/detail-payment-page';
   static const PAYMENT_SUCCESS_PAGE = '/payment-success-page';
+  static const LANGGANAN_PAGE = '/langganan-page';
 
 }

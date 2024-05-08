@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/langganan_page/items/item_langganan_vertical.dart';
 import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
+import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 import 'langganan_page_controller.dart';
 
@@ -50,8 +51,8 @@ class LanggananPageView extends GetView<LanggananPageController> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: 3,
                         itemBuilder: (context, index) =>
-                            const ItemLanggananVertical(
-                                image: "https://via.placeholder.com/150",
+                            ItemLanggananVertical(
+                                image: exampleJajanRectangle,
                                 title: "Ahmad Soebarjo",
                                 subtitle: "Sekitar 0.2 km dari lokasimu",
                                 rating: 5.0

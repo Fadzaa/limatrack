@@ -7,6 +7,8 @@ import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_view.da
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/detail_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/home_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/langganan_page/langganan_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/langganan_page/langganan_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/order_page/order_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/payment_page/payment_success_page.dart';
 import 'package:limatrack_genetic/app/pages/features/payment_page/rincian_pembayaran_page.dart';
@@ -30,7 +32,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_PAGE;
+  static const INITIAL = Routes.LANGGANAN_PAGE;
 
   static final routes = [
     GetPage(
@@ -103,6 +105,13 @@ class AppPages {
       page: () => const RincianPembayaranPage(),
       transition: Transition.noTransition,
     ),
+    GetPage(
+      name: _Paths.LANGGANAN_PAGE,
+      page: () => const LanggananPageView(),
+      binding: LanggananPageBinding(),
+      transition: Transition.noTransition,
+    ),
+
 
   ];
 }
