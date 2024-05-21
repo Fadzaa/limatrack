@@ -7,9 +7,6 @@ class PedagangService {
 
   Future<Response> getPedagangAll() async {
     try {
-      Future.delayed(const Duration(seconds: 2), () {
-        print('Delay 2 detik');
-      });
       final response = await _dioInstance.getRequest(
           endpoint: ApiEndPoint.pedagangAll,
           isAuthorize: true,
@@ -21,11 +18,24 @@ class PedagangService {
     }
   }
 
+  Future<Response> getPedagangSearch({required String query}) async {
+    try {
+      final response = await _dioInstance.getRequest(
+        endpoint: ApiEndPoint.pedagangAll,
+        isAuthorize: true,
+        queryParameters: {
+          'search': query
+        }
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   Future<Response> getPedagangNearest() async {
     try {
-      Future.delayed(const Duration(seconds: 2), () {
-        print('Delay 2 detik');
-      });
       final response = await _dioInstance.getRequest(
         endpoint: ApiEndPoint.pedagangAll,
         isAuthorize: true,
@@ -63,6 +73,22 @@ class PedagangService {
           isAuthorize: true,
           queryParameters: {
             'rating': 4.5
+          }
+      );
+
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<Response> getPadagangFilter(String filterKey, dynamic value) async {
+    try {
+      final response = await _dioInstance.getRequest(
+          endpoint: ApiEndPoint.pedagangAll,
+          isAuthorize: true,
+          queryParameters: {
+            filterKey : value
           }
       );
 
