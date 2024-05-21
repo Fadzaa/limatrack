@@ -66,19 +66,16 @@ class OtpPageView extends GetView<OtpPageController> {
                         margin: const EdgeInsets.symmetric(vertical: 30),
                         child: Pinput(
                             length: 4,
-                            controller: controller.otpNumberController,
+                            controller: controller.otpNumberController.value,
                             defaultPinTheme: defaultPinTheme,
                             separatorBuilder: (index) =>
                             const SizedBox(width: 8),
-                            validator: (value) {
-                              // return value == '2222' ? null : 'Pin is incorrect';
-                            },
-                            // onClipboardFound: (value) {
-                            //   pinController.setText(value);
+                            // validator: (value) {
+                            //   return value == '2222' ? null : 'Pin is incorrect';
                             // },
                             hapticFeedbackType: HapticFeedbackType.lightImpact,
-                            // onCompleted: _forgotLoginState.onTacNumberChanged,
-                            // onChanged: _forgotLoginState.onTacNumberChanged,
+                            onCompleted: (value) => controller.isEnabled.value = true,
+                            onChanged: (value) => controller.isEnabled.value = false,
                             showCursor: true,
                             cursor: Center(
                               child: Container(
@@ -102,16 +99,16 @@ class OtpPageView extends GetView<OtpPageController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Kode akan hangus dalam", style: tsBodyMedium),
+                          Text("Kode akan hangus dalam ", style: tsBodyMedium),
 
                           const SizedBox(width: 3,),
 
                           InkWell(
                             onTap: () => Get.toNamed(Routes.LOGIN_PAGE),
-                            child: Text("00.00", style: tsBodyMedium.copyWith(
+                            child: Obx(() => Text(controller.countDown.value, style: tsBodyMedium.copyWith(
                               color: primaryColor,
                               fontWeight: FontWeight.w600,
-                            ),),
+                            ),),)
                           ),
 
                         ],
@@ -119,14 +116,16 @@ class OtpPageView extends GetView<OtpPageController> {
 
                       const SizedBox(height: 30,),
 
-                      CommonButton(
-                        text: "Verifikasi", onPressed: () => controller.register(), height: 45,
-                      ),
+                      Obx(() => CommonButton(
+                        text: "Verifikasi",
+                        onPressed: controller.isEnabled.value ? () => controller.register() : null,
+                        height: 45,
+                      ),),
 
                       const SizedBox(height: 10,),
 
                       CommonButtonOutline(
-                          text: "Kirim Ulang Email", onPressed: () => Get.toNamed(Routes.HOME_PAGE)
+                          text: "Kirim Ulang Email", onPressed: () => controller.otpVerification()
                       ),
 
                     ]

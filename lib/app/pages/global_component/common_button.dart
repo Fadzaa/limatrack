@@ -57,6 +57,8 @@ class CommonButtonGoogle extends StatelessWidget {
     return ElevatedButton(
         onPressed: () => null,
         style: ElevatedButton.styleFrom(
+            disabledBackgroundColor: const Color(0xFFBABABA),
+            disabledForegroundColor: Colors.white,
             backgroundColor: Colors.white,
             shadowColor: Colors.black.withOpacity(0.5),
             foregroundColor: Colors.white,
@@ -67,6 +69,7 @@ class CommonButtonGoogle extends StatelessWidget {
           ),
           elevation: 1.2
         ),
+
 
 
         child: Row(
