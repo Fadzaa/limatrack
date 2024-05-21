@@ -28,7 +28,7 @@ class RegisterPageView extends GetView<RegisterPageController> {
                       children: [
                         Align(
                             alignment: Alignment.centerRight,
-                            child: Image.asset(logoSecondary)
+                            child: Image.asset(logoSecondary, width: 125,)
                         ),
 
                         const SizedBox(height: 20,),

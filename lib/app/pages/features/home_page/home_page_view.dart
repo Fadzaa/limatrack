@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -62,23 +63,46 @@ class HomePageView extends GetView<HomePageController> {
       ),
 
       body:  SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.grey[200],
-                height: MediaQuery.of(context).size.height * 0.7,
-                child: const GoogleMap(
-                  initialCameraPosition:  CameraPosition(
-                    target: LatLng(-6.966667, 110.416664),
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.grey[200],
+              height: MediaQuery.of(context).size.height * 1,
+              child: Obx(() => GoogleMap(
+                onMapCreated: (GoogleMapController googleMapController) {
+                  controller.mapController = googleMapController;
+                },
+                  initialCameraPosition: CameraPosition(
+                    target: controller.currentLocation.value,
                     zoom: 15,
                   ),
-                )
-              ),
 
-              const ContainerContent(),
-            ],
-          ),
+
+                  markers: {
+                    Marker(
+                      markerId: const MarkerId("1"),
+                      position: controller.currentLocation.value,
+                      infoWindow: const InfoWindow(
+                        title: "LimaTrack",
+                        snippet: "Jl. Raya Kedungwuni, Kedungwuni, Pekalongan, Jawa Tengah",
+                      ),
+                    )
+                  }
+
+              ))
+            ),
+
+            DraggableScrollableSheet(
+              initialChildSize: 0.25,
+              minChildSize: 0.25,
+              maxChildSize: 1,
+                builder: (context, scrollableController) =>
+                    SingleChildScrollView(
+                    controller: scrollableController,
+                    child: const ContainerContent()
+                ),
+            )
+          ],
         ),
       ),
       backgroundColor: baseColor,
@@ -94,7 +118,8 @@ class ContainerContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20),),
+        color: Colors.white,
       ),
 
       child: Column(
