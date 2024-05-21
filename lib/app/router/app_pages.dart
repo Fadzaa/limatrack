@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/pages/features/chat_page/chat_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/explore_page/explore_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/faq_page/faq_page_binding.dart';
+import 'package:limatrack_genetic/app/pages/features/faq_page/faq_page_view.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/bottom_navigation.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_binding.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_view.dart';
@@ -32,7 +34,7 @@ class AppPages {
 
   AppPages._();
 
-  static const INITIAL = Routes.LANGGANAN_PAGE;
+  static const INITIAL = Routes.HOME_PAGE;
 
   static final routes = [
     GetPage(
@@ -109,6 +111,12 @@ class AppPages {
       name: _Paths.LANGGANAN_PAGE,
       page: () => const LanggananPageView(),
       binding: LanggananPageBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.FAQ_PAGE,
+      page: () => FaqPageView(),
+      binding: FaqPageBinding(),
       transition: Transition.noTransition,
     ),
 
