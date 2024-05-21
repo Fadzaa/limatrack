@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/explore_page/items/item_explore_vertical.dart';
-import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
-import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/item_jajan_vertical.dart';
-import 'package:limatrack_genetic/app/pages/global_component/bottom_sheet/detail_jajan_bottom_sheet.dart';
+import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
 import 'package:limatrack_genetic/app/pages/global_component/not_found_page/not_found_page.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
@@ -18,6 +15,7 @@ class ExplorePageView extends GetView<ExplorePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
 
       body: SafeArea(
         child: Column(
@@ -51,6 +49,7 @@ class ExplorePageView extends GetView<ExplorePageController> {
                   SizedBox(
                     height: 40,
                     child: TextField(
+                      onSubmitted: (value) => controller.fetchPedagangSearch(value),
                       style: tsBodySmall.copyWith(
                         fontWeight: FontWeight.w500,
                         color: blackColor
@@ -107,25 +106,30 @@ class ExplorePageView extends GetView<ExplorePageController> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
-                  child: jajan_data.length != 0 ? ListView.builder(
-                    itemCount: jajan_data.length,
-                      itemBuilder: (context, index) =>
-                          InkWell(
-                            // onTap: () => detailJajanBottomSheet(),
-                            child: ItemExploreVertical(
-                              image: exampleJajanRectangle,
-                              name: "Telur Gulung",
-                              description: "Telur Digulung",
-                              price: 10000,
-                            ),
-                          )
+                child: Obx(() => SizedBox(
+                  child: controller.listWarungTerdekat.isNotEmpty ?
+                  ListView.builder(
+                      itemCount: controller.listWarungTerdekat.length,
+                      itemBuilder: (context, index) {
+                        WarungModel warung = controller.listWarungTerdekat[index];
+
+                        return InkWell(
+                          // onTap: () => detailJajanBottomSheet(),
+                          child: ItemExploreVertical(
+                            image: warung.banner,
+                            name: warung.namaWarung,
+                            description: warung.daerahDagang,
+                            price: 10000,
+                          ),
+                        );
+                      }
                   ) : NotFoundPage(
                       image: notFoundExplore,
                       title: "Kami Tidak Menemukannya",
                       subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
                   ),
-                ),
+                )
+                )
               ),
             )
 

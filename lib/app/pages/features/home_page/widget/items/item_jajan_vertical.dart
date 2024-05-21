@@ -26,6 +26,7 @@ class ItemJajanVertical extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(image: NetworkImage(image), fit: BoxFit.fitWidth),
         borderRadius: BorderRadius.circular(16),
+
       ),
 
       child: Row(

@@ -26,7 +26,7 @@ class HomePageView extends GetView<HomePageController> {
         backgroundColor: Colors.white,
         title: SizedBox(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
@@ -53,8 +53,6 @@ class HomePageView extends GetView<HomePageController> {
 
                 ],
               ),
-
-              SvgPicture.asset(icNotification)
 
             ],
           )
