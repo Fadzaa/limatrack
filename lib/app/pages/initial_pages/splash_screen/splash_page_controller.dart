@@ -10,12 +10,14 @@ class SplashPageController extends GetxController {
   }
 
   void checkFirstLaunch() async {
+
+    await Future.delayed(const Duration(seconds: 1));
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
 
     if (isFirstLaunch) {
       Get.offNamed(Routes.ONBOARDING_PAGE);
-
       await prefs.setBool('isFirstLaunch', false);
     } else {
       final token = prefs.getString('token');

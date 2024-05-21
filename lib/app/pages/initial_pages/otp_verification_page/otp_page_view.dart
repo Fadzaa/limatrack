@@ -42,7 +42,7 @@ class OtpPageView extends GetView<OtpPageController> {
                     children: [
                       Align(
                           alignment: Alignment.center,
-                          child: Image.asset(logoSecondary)
+                          child: Image.asset(logoSecondary, width: 125)
                       ),
 
                       const SizedBox(height: 30,),
@@ -65,7 +65,7 @@ class OtpPageView extends GetView<OtpPageController> {
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 30),
                         child: Pinput(
-                            length: 6,
+                            length: 4,
                             controller: controller.otpNumberController,
                             defaultPinTheme: defaultPinTheme,
                             separatorBuilder: (index) =>
