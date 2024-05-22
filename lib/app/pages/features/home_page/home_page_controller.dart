@@ -1,31 +1,44 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:limatrack_genetic/app/api/pedagang/model/list_warung_response.dart';
 import 'package:limatrack_genetic/app/api/pedagang/service/pedagang_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui' as ui;
 
 import '../../../api/pedagang/model/warung.dart';
 
 
 class HomePageController extends GetxController {
+  RxBool isLoading = false.obs;
+
+  //Pagination Init
   late PageController pageController;
   RxInt pageIndex = 0.obs;
 
-  RxBool isLoading = false.obs;
-
+  //API Init
   late PedagangService pedagangService;
   late WarungResponse warungResponse;
   RxList<WarungModel> listWarung = <WarungModel>[].obs;
   RxList<WarungModel> listWarungTerdekat = <WarungModel>[].obs;
 
+  //Google Maps Init
   Rx<LatLng> currentLocation = const LatLng(0, 0).obs;
   GoogleMapController? mapController;
+
+  //Custom Widget Marker Init
+  RxBool isMarkerLoaded = false.obs;
+  Map<String, GlobalKey> keys = {};
+  Map<String, Marker> markers = {};
 
   @override
   void onInit() {
     super.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((_) => onBuildMarkerComplete);
     pageController = PageController(initialPage: 0);
     pedagangService = PedagangService();
 
@@ -37,6 +50,14 @@ class HomePageController extends GetxController {
     getCurrentLocation();
   }
 
+  void changePage(int index) {
+    pageController.animateToPage(index, duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut);
+  }
+
+  void onPageChanged(int index) {
+    pageIndex.value = index;
+  }
 
   Future fetchPedagangAll() async {
     try {
@@ -71,6 +92,10 @@ class HomePageController extends GetxController {
 
       warungResponse = WarungResponse.fromJson(response.data);
       listWarungTerdekat = warungResponse.data.obs;
+
+      for (var warung in listWarungTerdekat) {
+        keys[warung.id] = GlobalKey();
+      }
 
 
       print(listWarung);
@@ -115,14 +140,37 @@ class HomePageController extends GetxController {
     }
   }
 
-  void changePage(int index) {
-    pageController.animateToPage(index, duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut);
+  Future<void> onBuildMarkerComplete() async {
+    await Future.wait(
+      listWarungTerdekat.map((warung) async {
+        Marker marker = await generateMarkerFromWidgets(warung);
+        markers[warung.id] = marker;
+      }
+    ));
+
+    isMarkerLoaded.value = true;
   }
 
-  void onPageChanged(int index) {
-    pageIndex.value = index;
+  Future<Marker> generateMarkerFromWidgets(WarungModel data) async {
+    RenderRepaintBoundary boundary = keys[data.id]!.currentContext!.findRenderObject()
+    as RenderRepaintBoundary;
+
+    ui.Image image = await boundary.toImage(pixelRatio: 2.0);
+
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+
+    return Marker(
+      markerId: MarkerId(data.id),
+      position: LatLng(double.parse(data.latitude.toString()), double.parse(data.longitude.toString())),
+      icon: BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List()),
+      infoWindow: InfoWindow(
+        title: data.namaWarung,
+      ),
+    );
   }
+
+
+
 
 
   @override

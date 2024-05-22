@@ -55,3 +55,4 @@ String onboardFood = '${svgImages}onboard_food.svg';
 String onboardLocation = '${svgImages}onboard_location.svg';
 String onboardSocmed = '${svgImages}onboard_socmed.svg';
 String notFoundExplore = '${svgImages}not_found_explore.svg';
+String bottomMarker = '${svgImages}bottom_marker.svg';

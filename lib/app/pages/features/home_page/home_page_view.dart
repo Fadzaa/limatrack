@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:limatrack_genetic/app/api/auth/model/user.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/custom_marker.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/advertise_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/nearest_section.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/recommendation_section.dart';
@@ -62,34 +62,57 @@ class HomePageView extends GetView<HomePageController> {
 
       ),
 
-      body:  SafeArea(
+      body: SafeArea(
         child: Stack(
           children: [
             Container(
               color: Colors.grey[200],
               height: MediaQuery.of(context).size.height * 1,
-              child: Obx(() => GoogleMap(
-                onMapCreated: (GoogleMapController googleMapController) {
-                  controller.mapController = googleMapController;
-                },
-                  initialCameraPosition: CameraPosition(
-                    target: controller.currentLocation.value,
-                    zoom: 15,
-                  ),
-
-
-                  markers: {
-                    Marker(
-                      markerId: const MarkerId("1"),
-                      position: controller.currentLocation.value,
-                      infoWindow: const InfoWindow(
-                        title: "LimaTrack",
-                        snippet: "Jl. Raya Kedungwuni, Kedungwuni, Pekalongan, Jawa Tengah",
+              child: Obx(() =>
+                  controller.isMarkerLoaded.value ?
+                  GoogleMap(
+                      onMapCreated: (GoogleMapController googleMapController) {
+                        controller.mapController = googleMapController;
+                      },
+                      initialCameraPosition: CameraPosition(
+                        target: controller.currentLocation.value,
+                        zoom: 15,
                       ),
-                    )
-                  }
 
-              ))
+
+                      markers: controller.markers.values.toSet(),
+                      // Set<Marker>.of(controller.listWarungTerdekat.map((warung) {
+                      //   return warung.latitude != null && warung.longitude != null ? Marker(
+                      //
+                      //     markerId: MarkerId(warung.id.toString()),
+                      //     position: LatLng(double.parse(warung.latitude.toString()), double.parse(warung.longitude.toString())),
+                      //     infoWindow: InfoWindow(
+                      //       title: warung.namaWarung,
+                      //     ),
+                      //   ) : Marker(markerId: MarkerId(warung.id.toString()));
+                      // }).toList())
+
+                  ) :
+                      //Rendering Custom Marker as a list but make it hidden
+                      ListView(
+                        children: [
+                          for (int i = 0; i < controller.listWarungTerdekat.length; i++)
+
+                            Transform.translate(
+                              offset: Offset(
+                                -MediaQuery.of(context).size.width * 2,
+                                -MediaQuery.of(context).size.height * 2,
+                              ),
+                              child: RepaintBoundary(
+                                key: controller.keys[controller.listWarungTerdekat[i].id],
+                                child: CustomMarker(
+                                  imageUrl: controller.listWarungTerdekat[i].banner ?? exampleAds,
+                                ),
+                              ),
+                            )
+                        ],
+                      )
+              )
             ),
 
             DraggableScrollableSheet(
@@ -105,6 +128,7 @@ class HomePageView extends GetView<HomePageController> {
           ],
         ),
       ),
+
       backgroundColor: baseColor,
       resizeToAvoidBottomInset: false,
     );
@@ -151,11 +175,3 @@ class ContainerContent extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
