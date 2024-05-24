@@ -50,6 +50,7 @@ class JajananModel {
   @JsonKey(name: 'updated_at')
   late String updatedAt;
 
+
   JajananModel();
 
   factory JajananModel.fromJson(Map<String, dynamic> json) =>

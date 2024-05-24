@@ -13,7 +13,7 @@ class FloatingBottomCart extends GetView<DetailPageController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(Routes.CART_PAGE, arguments: controller.data_jajan),
+      onTap: () => controller.storeAllJajanToCart(),
       child: Container(
         height: 60,
         width: MediaQuery.of(context).size.width * 0.90,

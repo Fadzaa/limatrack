@@ -28,7 +28,7 @@ class CounterJajan extends GetView<DetailPageController> {
 
       children: [
         InkWell(
-          onTap: () => counter.value == 1 ? controller.removeDataJajan(counter, jajan) : controller.decrementCounter(counter, price),
+          onTap: () => controller.removeDataJajan(counter, jajan),
           child: Obx(() => Container(
               height: isGrid ? 35 : 20,
               width: isGrid ? 35 : 20,
@@ -49,7 +49,7 @@ class CounterJajan extends GetView<DetailPageController> {
         ),)),
 
         InkWell(
-            onTap: () => controller.incrementCounter(counter, price),
+            onTap: () => controller.addDataJajan(counter, jajan),
             child: Container(
                 height: isGrid ? 35 : 20,
                 width: isGrid ? 35 : 20,

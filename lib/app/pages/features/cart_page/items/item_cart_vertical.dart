@@ -18,7 +18,7 @@ class ItemCartVertical extends StatelessWidget {
   });
 
   final String image, name;
-  final RxInt price, counter;
+  final int price, counter;
   final JajananModel jajan;
 
   @override
@@ -34,7 +34,7 @@ class ItemCartVertical extends StatelessWidget {
            children: [
              ClipRRect(
                borderRadius: BorderRadius.circular(16),
-               child: Image.asset(image, height: double.maxFinite, width: 100, fit: BoxFit.cover,),
+               child: Image.network(image, height: double.maxFinite, width: 100, fit: BoxFit.cover,),
              ),
 
              const SizedBox(width: 20,),
@@ -68,7 +68,7 @@ class ItemCartVertical extends StatelessWidget {
 
          SizedBox(
            width: 70,
-           child: CounterJajan(counter: counter, price: price, isGrid: false, jajan: jajan),
+           child: CounterJajan(counter: counter.obs, price: price.obs, isGrid: false, jajan: jajan),
          )
         ],
       ),

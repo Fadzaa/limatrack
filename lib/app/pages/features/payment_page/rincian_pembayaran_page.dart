@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:limatrack_genetic/app/pages/features/payment_page/payment_model.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/constant.dart';
@@ -10,10 +12,29 @@ class RincianPembayaranPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PaymentModel paymentModel = Get.arguments;
+
+    String formattedDate = DateFormat('d MMMM yyyy - HH.mm').format(DateTime.now());
+
     return Scaffold(
       backgroundColor: baseColor,
       appBar: AppBar(
-        title: Center(child: Text("Rincian Pemesanan", style: tsBodyLarge.copyWith(fontWeight: FontWeight.w600)),),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () => Get.back(),
+                child: const Icon(Icons.arrow_back, color: Colors.black,),
+              ),
+              Text("Rincian Pemesanan", style: tsBodyLarge.copyWith(fontWeight: FontWeight.w600)),
+
+              Container()
+            ],
+          )),
       ),
       body: Center(
         child: Padding(
@@ -47,7 +68,7 @@ class RincianPembayaranPage extends StatelessWidget {
                         children: [
                           Text("Total Harga", style: tsBodyMedium.copyWith(fontWeight: FontWeight.w600),),
 
-                          Text("Rp 3.500", style: tsHeadingLarge.copyWith(fontWeight: FontWeight.bold),),
+                          Text("Rp ${paymentModel.totalPrice}", style: tsHeadingLarge.copyWith(fontWeight: FontWeight.bold),),
 
                         ],
                       ),
@@ -68,20 +89,13 @@ class RincianPembayaranPage extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Image.asset(icDana, width: 30, height: 30,),
+                                Image.asset(icCashPayment, width: 30, height: 30,),
 
                                 const SizedBox(width: 10,),
 
-                                Text("Dana", style: tsBodySmall.copyWith(fontWeight: FontWeight.w500),),
+                                Text("Bayar Ditempat", style: tsBodySmall.copyWith(fontWeight: FontWeight.w500),),
                               ],
                             ),
-
-                            Text("*********6743", style: tsBodySmall.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: greyColor
-                            ),)
-
-
 
                           ],
                         ),
@@ -94,18 +108,18 @@ class RincianPembayaranPage extends StatelessWidget {
                           itemCount: 2,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) =>
-                              Text("1 Telur Gulung", style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),)
+                              Text("${paymentModel.jajanan[index].total} ${paymentModel.jajanan[index].nama}", style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),)
                       ),
                     ),
 
                     SectionText(
                       heading: "Tanggal Pemesanan",
-                      widget: Text("22 Februari 2023 - 08.21", style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),),
+                      widget: Text(formattedDate, style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),),
                     ),
 
                     SectionText(
                       heading: "Nama Dagangan",
-                      widget: Text("Waroeng Obenk", style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),)
+                      widget: Text(paymentModel.namaPedagang, style: tsBodyMedium.copyWith(fontWeight: FontWeight.w500),)
                     )
 
                   ],
