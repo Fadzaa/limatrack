@@ -142,11 +142,11 @@ class HomePageController extends GetxController {
 
   Future<void> onBuildMarkerComplete() async {
     await Future.wait(
-      listWarungTerdekat.map((warung) async {
-        Marker marker = await generateMarkerFromWidgets(warung);
-        markers[warung.id] = marker;
-      }
-    ));
+        listWarungTerdekat.map((warung) async {
+          Marker marker = await generateMarkerFromWidgets(warung);
+          markers[warung.id] = marker;
+        }
+        ));
 
     isMarkerLoaded.value = true;
   }
