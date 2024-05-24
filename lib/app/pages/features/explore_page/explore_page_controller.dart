@@ -49,9 +49,44 @@ class ExplorePageController extends GetxController {
     }
   }
 
+  Future fetchPedagangRating() async {
+    try {
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangRating();
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future fetchPedagangHalal() async {
+    try {
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangHalal();
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   Future fetchPedagangSearch(String query) async {
     try {
       listWarungTerdekat.clear();
+      print('value query = ' + query);
 
       isLoading.value = true;
 
@@ -79,5 +114,17 @@ class ExplorePageController extends GetxController {
     currentIndex.value = index;
   }
 
-
+  void switchCaseFetchFilter() {
+    switch (currentIndex.value) {
+      case 0:
+        fetchPedagangNearest();
+        break;
+      case 1:
+        fetchPedagangRating();
+        break;
+      case 2:
+        fetchPedagangHalal();
+        break;
+    }
+  }
 }
