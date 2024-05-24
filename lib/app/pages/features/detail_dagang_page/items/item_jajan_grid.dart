@@ -116,7 +116,7 @@ class ItemJajanGrid extends GetView<DetailPageController> {
                 Obx(() =>
                 counter.value > 0
                     ? CounterJajan(counter: counter, isGrid: true, price: price.obs, jajan: jajan,)
-                    : CommonButton(text: "Tambah", onPressed: !stockEmpty ? null : () => controller.initialAddCounter(counter, jajan), height: 34,)
+                    : CommonButton(text: "Tambah", onPressed: () => controller.addDataJajan(counter, jajan), height: 34,)
                 ),
               ],
             ),

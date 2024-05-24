@@ -52,7 +52,7 @@ class JajanUtamaSection extends GetView<DetailPageController> {
                   description: jajan_data.deskripsi,
                   price: jajan_data.harga,
                   stockEmpty: jajan_data.tersedia,
-                  jajan: jajan_data
+                  jajan: jajan_data,
                 ),
               );
             }

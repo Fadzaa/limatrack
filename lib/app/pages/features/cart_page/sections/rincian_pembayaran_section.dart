@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/pages/features/cart_page/cart_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_warning_box.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
-class RincianPembayaranSection extends StatelessWidget {
+class RincianPembayaranSection extends GetView<CartPageController> {
   const RincianPembayaranSection({super.key});
 
   @override
@@ -26,7 +28,7 @@ class RincianPembayaranSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Harga Jajanan", style: tsBodySmall.copyWith(fontWeight: FontWeight.w500),),
-                  Text("Rp 3.000", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600),),
+                  Text("Rp ${controller.totalPrice.value}", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600),),
                 ],
               ),
 
@@ -36,7 +38,7 @@ class RincianPembayaranSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Biaya Admin", style: tsBodySmall.copyWith(fontWeight: FontWeight.w500),),
-                  Text("Rp 500", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600),),
+                  Text("Rp ${controller.totalPrice.value * 0.05}", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600),),
                 ],
               ),
 
@@ -49,10 +51,9 @@ class RincianPembayaranSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Total", style: tsBodyLarge.copyWith(fontWeight: FontWeight.bold),),
-                  Text("Rp 3.500", style: tsBodyLarge.copyWith(fontWeight: FontWeight.w600),),
+                  Text("Rp ${controller.getTotalPrice()}", style: tsBodyLarge.copyWith(fontWeight: FontWeight.w600),),
                 ],
               ),
-
 
 
             ],

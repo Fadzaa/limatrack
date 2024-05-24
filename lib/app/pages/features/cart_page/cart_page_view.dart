@@ -6,8 +6,7 @@ import 'package:limatrack_genetic/app/pages/features/cart_page/model/pembayaran_
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/metode_pembayaran_section.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/pesanan_kamu_section.dart';
 import 'package:limatrack_genetic/app/pages/features/cart_page/sections/rincian_pembayaran_section.dart';
-import 'package:limatrack_genetic/app/pages/features/detail_dagang_page/widget/floating_bottom_cart.dart';
-import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
+import 'package:limatrack_genetic/app/pages/features/payment_page/payment_model.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_button.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 import 'package:limatrack_genetic/common/theme.dart';
@@ -31,7 +30,7 @@ class CartPageView extends GetView<CartPageController> {
             
             const Spacer(),
             
-            Text("Waroeng Obenk", style: tsBodyLarge.copyWith(
+            Text(controller.warung.namaWarung, style: tsBodyLarge.copyWith(
               fontWeight: FontWeight.w600
             ),),
 
@@ -94,7 +93,7 @@ class CartPageView extends GetView<CartPageController> {
                             fontWeight: FontWeight.w600
                         ),),
 
-                        Text("${controller.totalPrice.value}", style: tsLabelLarge),
+                        Text("${controller.getTotalPrice()}", style: tsLabelLarge),
 
                       ],
                     ),
@@ -104,7 +103,15 @@ class CartPageView extends GetView<CartPageController> {
 
                 const Spacer(),
 
-                CommonButton(text: "Pesan Sekarang", onPressed: () => Get.toNamed(Routes.DETAIL_PAYMENT_PAGE), height: 50, borderRadius: 32,)
+                CommonButton(text: "Pesan Sekarang", onPressed: () =>
+                    Get.toNamed(
+                        Routes.DETAIL_PAYMENT_PAGE,
+                        arguments: PaymentModel(
+                            totalPrice: controller.getTotalPrice(),
+                            paymentMethod: "Dana",
+                            jajanan: controller.jajan_data,
+                            namaPedagang: controller.warung.namaWarung)
+                    ), height: 50, borderRadius: 32,)
               ],
             ),
           )

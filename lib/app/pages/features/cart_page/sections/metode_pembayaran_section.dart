@@ -50,7 +50,7 @@ class MetodePembayaranSection extends GetView<CartPageController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Bayar di Tempat", style: tsBodySmall.copyWith(fontWeight: FontWeight.w600),),
-                        Text("Rp 3.500", style: tsBodySmall),
+                        Text("Rp ${controller.getTotalPrice()}", style: tsBodySmall),
                       ],
                     ),
                   ],

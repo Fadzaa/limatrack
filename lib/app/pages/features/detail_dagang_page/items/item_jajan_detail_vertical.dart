@@ -116,7 +116,7 @@ class ItemJajanDetailVertical extends GetView<DetailPageController> {
               child: CounterJajan(counter: counter, isGrid: false, price: price.obs, jajan: jajan))
 
               : ElevatedButton(
-              onPressed: !stockEmpty ? null : () => controller.initialAddCounter(counter, jajan),
+              onPressed: !stockEmpty ? null : () => controller.addDataJajan(counter, jajan),
               style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
