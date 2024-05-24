@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
 import 'package:limatrack_genetic/app/pages/features/explore_page/items/item_explore_vertical.dart';
-import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
 import 'package:limatrack_genetic/app/pages/global_component/not_found_page/not_found_page.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
@@ -55,7 +54,7 @@ class ExplorePageView extends GetView<ExplorePageController> {
                         color: blackColor
                       ),
                         decoration: InputDecoration(
-                          contentPadding:  EdgeInsets.only(left: 20),
+                          contentPadding:  const EdgeInsets.only(left: 20),
                             hintText: "Cari Jajanan...",
                             hintStyle: tsBodySmall.copyWith(
                                 fontWeight: FontWeight.w500,
@@ -93,7 +92,6 @@ class ExplorePageView extends GetView<ExplorePageController> {
                                 isSelected: controller.currentIndex.value == index,
                                 index: index,
                               ))
-                              
                       ),
                     ),
                   )
@@ -106,30 +104,36 @@ class ExplorePageView extends GetView<ExplorePageController> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Obx(() => SizedBox(
-                  child: controller.listWarungTerdekat.isNotEmpty ?
-                  ListView.builder(
-                      itemCount: controller.listWarungTerdekat.length,
-                      itemBuilder: (context, index) {
-                        WarungModel warung = controller.listWarungTerdekat[index];
+                child: Obx(() {
+                  if (controller.isLoading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return SizedBox(
+                      child: controller.listWarungTerdekat.isNotEmpty
+                          ? ListView.builder(
+                        itemCount: controller.listWarungTerdekat.length,
+                        itemBuilder: (context, index) {
+                          WarungModel warung = controller.listWarungTerdekat[index];
 
-                        return InkWell(
-                          // onTap: () => detailJajanBottomSheet(),
-                          child: ItemExploreVertical(
-                            image: warung.banner,
-                            name: warung.namaWarung,
-                            description: warung.daerahDagang,
-                            price: 10000,
-                          ),
-                        );
-                      }
-                  ) : NotFoundPage(
-                      image: notFoundExplore,
-                      title: "Kami Tidak Menemukannya",
-                      subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
-                  ),
-                )
-                )
+                          return InkWell(
+                            // onTap: () => detailJajanBottomSheet(),
+                            child: ItemExploreVertical(
+                              image: warung.banner,
+                              name: warung.namaWarung,
+                              description: warung.daerahDagang,
+                              price: 10000,
+                            ),
+                          );
+                        },
+                      )
+                          : NotFoundPage(
+                        image: notFoundExplore,
+                        title: "Kami Tidak Menemukannya",
+                        subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya",
+                      ),
+                    );
+                  }
+                }),
               ),
             )
 
@@ -157,7 +161,10 @@ class FilterButton extends GetView<ExplorePageController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => controller.changeIndex(index),
+      onTap: () {
+        controller.changeIndex(index);
+        controller.switchCaseFetchFilter();
+      },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.symmetric(horizontal: 20),
