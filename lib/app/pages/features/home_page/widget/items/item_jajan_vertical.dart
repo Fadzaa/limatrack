@@ -24,9 +24,9 @@ class ItemJajanVertical extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(exampleJajan), fit: BoxFit.fitWidth),
+        image: DecorationImage(image: NetworkImage(image), fit: BoxFit.fitWidth),
         borderRadius: BorderRadius.circular(16),
-        color: primaryColor
+
       ),
 
       child: Row(

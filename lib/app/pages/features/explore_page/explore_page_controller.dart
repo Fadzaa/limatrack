@@ -1,10 +1,20 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:get/get.dart';
+
+import '../../../api/pedagang/model/list_warung_response.dart';
+import '../../../api/pedagang/model/warung.dart';
+import '../../../api/pedagang/service/pedagang_service.dart';
 
 
 class ExplorePageController extends GetxController {
-
   RxInt currentIndex = 0.obs;
+
+  RxBool isLoading = false.obs;
+
+  late PedagangService pedagangService;
+  late WarungResponse warungResponse;
+  RxList<WarungModel> listWarungTerdekat = <WarungModel>[].obs;
 
   List list_filter = [
     "Terdekat",
@@ -16,6 +26,81 @@ class ExplorePageController extends GetxController {
   void onInit() {
     super.onInit();
 
+    pedagangService = PedagangService();
+    warungResponse = WarungResponse();
+
+    fetchPedagangNearest();
+  }
+
+  Future fetchPedagangNearest() async {
+    try {
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangNearest();
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future fetchPedagangRating() async {
+    try {
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangRating();
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future fetchPedagangHalal() async {
+    try {
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangHalal();
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future fetchPedagangSearch(String query) async {
+    try {
+      listWarungTerdekat.clear();
+      print('value query = ' + query);
+
+      isLoading.value = true;
+
+      final response = await pedagangService.getPedagangSearch(query: query);
+
+      warungResponse = WarungResponse.fromJson(response.data);
+      listWarungTerdekat = warungResponse.data.obs;
+
+    } catch (e) {
+      isLoading.value = true;
+      print(e);
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   @override
@@ -29,5 +114,17 @@ class ExplorePageController extends GetxController {
     currentIndex.value = index;
   }
 
-
+  void switchCaseFetchFilter() {
+    switch (currentIndex.value) {
+      case 0:
+        fetchPedagangNearest();
+        break;
+      case 1:
+        fetchPedagangRating();
+        break;
+      case 2:
+        fetchPedagangHalal();
+        break;
+    }
+  }
 }

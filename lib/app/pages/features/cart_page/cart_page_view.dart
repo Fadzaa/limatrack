@@ -25,7 +25,7 @@ class CartPageView extends GetView<CartPageController> {
         title: Row(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE),
+              onTap: () => Get.back(),
                 child: SvgPicture.asset(icArrowLeft)
             ),
             
@@ -37,7 +37,10 @@ class CartPageView extends GetView<CartPageController> {
 
             const Spacer(),
             ],
-        )
+        ),
+        backgroundColor: baseColor,
+        foregroundColor: baseColor,
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -101,7 +104,7 @@ class CartPageView extends GetView<CartPageController> {
 
                 const Spacer(),
 
-                CommonButton(text: "Pesan Sekarang", onPressed: () {}, height: 50, borderRadius: 32,)
+                CommonButton(text: "Pesan Sekarang", onPressed: () => Get.toNamed(Routes.DETAIL_PAYMENT_PAGE), height: 50, borderRadius: 32,)
               ],
             ),
           )

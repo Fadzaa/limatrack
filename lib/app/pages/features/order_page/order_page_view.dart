@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:limatrack_genetic/app/pages/features/explore_page/items/item_explore_vertical.dart';
-import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
 import 'package:limatrack_genetic/app/pages/features/order_page/items/item_order_complete.dart';
 import 'package:limatrack_genetic/app/pages/features/order_page/items/item_order_ongoing.dart';
 import 'package:limatrack_genetic/app/pages/global_component/bottom_sheet/detail_jajan_bottom_sheet.dart';
@@ -106,7 +102,7 @@ class OrderCompleteView extends StatelessWidget {
       }
     ];
 
-    return ListView.builder(
+    return list_order.length != 0 ?  ListView.builder(
         itemCount: list_order.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -127,7 +123,7 @@ class OrderCompleteView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, indexFood) =>
                         InkWell(
-                          onTap: () => detailJajanBottomSheet(),
+                          // onTap: () => detailJajanBottomSheet(),
                           child: ItemOrderComplete(
                             image: list_order[index]["orders"][indexFood]["image"],
                             name: "Telur Gulung",
@@ -139,6 +135,10 @@ class OrderCompleteView extends StatelessWidget {
                 const SizedBox(height: 20,)
               ],
             )
+    ) : NotFoundPage(
+        image: notFoundExplore,
+        title: "Kami Tidak Menemukannya",
+        subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
     );
   }
 }
@@ -186,7 +186,7 @@ class OrderOngoingView extends StatelessWidget {
 
     return Column(
       children: [
-        ListView.builder(
+        list_order.length != 0 ?  ListView.builder(
             itemCount: list_order.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -207,7 +207,7 @@ class OrderOngoingView extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, indexFood) =>
                       InkWell(
-                        onTap: () => detailJajanBottomSheet(),
+                        // onTap: () => detailJajanBottomSheet(),
                         child: ItemOrderOngoing(
                           image: list_order[index]["orders"][indexFood]["image"],
                           name: "Telur Gulung",
@@ -221,6 +221,11 @@ class OrderOngoingView extends StatelessWidget {
                   ],
                 )
         )
+            : NotFoundPage(
+            image: notFoundExplore,
+            title: "Kami Tidak Menemukannya",
+            subtitle: "Perbaiki Kata Kunci atau Cari Makanan Lainnya"
+        ),
       ],
     );
   }

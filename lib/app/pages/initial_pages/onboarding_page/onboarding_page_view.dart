@@ -24,7 +24,7 @@ class OnboardingPageView extends GetView<OnboardingPageController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset(logoSecondary),
+                        Image.asset(logoSecondary, width: 125,),
                         TextButton(
                             onPressed: () => controller.skipOnboarding(),
                             child: Text("Skip", style: tsTitleSmall.copyWith(color: blackColor),)

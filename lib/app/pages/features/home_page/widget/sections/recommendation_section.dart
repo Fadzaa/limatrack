@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:limatrack_genetic/app/api/pedagang/model/warung.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/home_page_controller.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/model/jajan_data.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/item_jajan_horizontal.dart';
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/section_text.dart';
 import 'package:limatrack_genetic/app/pages/global_component/common_warning_box.dart';
+import 'package:limatrack_genetic/app/pages/global_component/loading_overlay.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
+import 'package:limatrack_genetic/common/theme.dart';
+import 'package:shimmer/shimmer.dart';
 
-class RecommendationSection extends StatelessWidget {
+class RecommendationSection extends GetView<HomePageController> {
   const RecommendationSection({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +42,31 @@ class RecommendationSection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(left: 20),
           height: MediaQuery.of(context).size.width * 0.42,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
+          child: Obx(
+                () => ShimmerOverlay(
+                    isLoading: controller.isLoading.value,
+                    axis: Axis.horizontal,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.listWarung.length,
+                      itemBuilder: (context, index) {
+                        final listWarung = controller.listWarung[index];
 
-              itemCount: jajan_data.length,
-              itemBuilder: (context, index) =>
-                  ItemJajanHorizontal(
-                      image: jajan_data[index].image,
-                      name: jajan_data[index].name,
-                      rating: jajan_data[index].rating,
-                      isHalal: jajan_data[index].isHalal
-                  )
-          ),
+                        return InkWell(
+                          onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: {'id': listWarung.id}),
+                          child: ItemJajanHorizontal(
+                            image: listWarung.banner,
+                            name: listWarung.namaWarung,
+                            rating: listWarung.averageRating,
+                            isHalal: listWarung.sertifikasiHalal,
+                          ),
+                        );
+                      },
+                    ),
+                )
+          )
         )
-      ],
+      ]
     );
   }
 }

@@ -25,8 +25,9 @@ class ItemJajanHorizontal extends StatelessWidget {
       margin: const EdgeInsets.only(right: 10),
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(exampleJajan), fit: BoxFit.fill),
+        image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover),
         borderRadius: BorderRadius.circular(16),
+
 
       ),
 

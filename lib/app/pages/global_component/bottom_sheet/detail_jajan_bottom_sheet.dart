@@ -5,10 +5,10 @@ import 'package:limatrack_genetic/app/pages/global_component/common_button.dart'
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
 
-void detailJajanBottomSheet () {
+void detailJajanBottomSheet ({required String image, required String warungName, required String jajananName, required String description }) {
   Get.bottomSheet(
       Container(
-        height: 550,
+        height: 600,
         width: double.infinity,
         decoration: const BoxDecoration(
             color: Colors.white,
@@ -30,14 +30,14 @@ void detailJajanBottomSheet () {
 
             ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  exampleJajanRectangle,
+                child: Image.network(
+                  image,
                   fit: BoxFit.fill,
                   width: double.maxFinite,
                   height: 300,)
             ),
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +46,7 @@ void detailJajanBottomSheet () {
 
                 const SizedBox(width: 5,),
 
-                Text("Waroenk Obenk",
+                Text(warungName,
                   style: tsBodyMedium.copyWith(
                       fontWeight: FontWeight.w600
                   ),
@@ -56,11 +56,11 @@ void detailJajanBottomSheet () {
 
             const SizedBox(height: 20,),
 
-            Text("Daging Kukus", style: tsBodyLarge.copyWith(
+            Text(jajananName, style: tsBodyLarge.copyWith(
                 fontWeight: FontWeight.w600
             ),),
 
-            Text("Steak Daging dengan Sentuhan Tangan", style: tsBodySmall),
+            Text(description, style: tsBodySmall),
 
             const SizedBox(height: 10,),
 

@@ -34,6 +34,12 @@ dependencies:
   shimmer:
   pinput: ^4.0.0
   google_fonts: ^6.2.1
+  gap: ^3.0.1
+  google_maps_flutter:
+  dio:
+  json_serializable: ^6.7.1
+  json_annotation: ^4.8.1
+  geolocator: ^12.0.0
   flutter:
     sdk: flutter
 
@@ -45,6 +51,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.9
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
