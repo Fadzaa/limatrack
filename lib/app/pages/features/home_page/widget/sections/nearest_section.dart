@@ -37,11 +37,14 @@ class NearestSection extends GetView<HomePageController> {
                 itemBuilder: (context, index) {
                   final listWarungTerdekat = controller.listWarungTerdekat[index];
 
-                  return ItemJajanVertical(
-                      image: listWarungTerdekat.banner,
-                      name: listWarungTerdekat.namaWarung,
-                      rating: listWarungTerdekat.averageRating,
-                      isHalal: listWarungTerdekat.sertifikasiHalal
+                  return InkWell(
+                    onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: {'id': listWarungTerdekat.id}),
+                    child: ItemJajanVertical(
+                        image: listWarungTerdekat.banner,
+                        name: listWarungTerdekat.namaWarung,
+                        rating: listWarungTerdekat.averageRating,
+                        isHalal: listWarungTerdekat.sertifikasiHalal
+                    ),
                   );
                 }
 

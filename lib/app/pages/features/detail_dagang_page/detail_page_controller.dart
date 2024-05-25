@@ -83,9 +83,9 @@ class DetailPageController extends GetxController {
   }
 
   void storeAllJajanToCart() {
-    // for (var item in data_jajan) {
-    //   storeJajanToCart(item);
-    // }
+    for (var item in data_jajan) {
+      storeJajanToCart(item);
+    }
 
     Get.toNamed(Routes.CART_PAGE, arguments: [data_jajan, warungModel]);
   }
@@ -152,25 +152,4 @@ class DetailPageController extends GetxController {
       print(item.total);
     }
   }
-
-
 }
-
-// void incrementCounter(RxInt counter, RxInt price) {
-//   counter.value++;
-//   total.value++;
-//   totalPrice.value += price.value;
-// }
-//
-// void decrementCounter(RxInt counter, RxInt price) {
-//   counter.value--;
-//   total.value--;
-//   totalPrice.value -= price.value;
-// }
-//
-// void initialAddCounter(RxInt counter, JajananModel jajan) {
-//   data_jajan.add(jajan);
-//   counter.value++;
-//   total.value++;
-//   totalPrice.value += jajan.harga;
-// }
