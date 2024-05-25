@@ -32,7 +32,7 @@ class JajanUtamaSection extends GetView<DetailPageController> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 0.87
+                childAspectRatio: 0.8
             ),
             itemBuilder: (context, index) {
               final jajan_data = controller.jajanan_utama[index];
