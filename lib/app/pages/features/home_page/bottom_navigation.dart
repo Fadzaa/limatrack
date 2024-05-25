@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:limatrack_genetic/app/api/auth/model/user.dart';
 import 'package:limatrack_genetic/app/api/auth/model/user_response.dart';
 import 'package:limatrack_genetic/app/api/auth/service/authentication_service.dart';
@@ -20,50 +24,47 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
+  RxBool isLoadingUser = true.obs;
 
   late AuthenticationService authenticationService;
   late UserResponse userResponse;
   UserModel? user;
+
+  RxString namaLengkap = "".obs;
+  RxString email = "".obs;
 
 
   @override
   void initState() {
     authenticationService = AuthenticationService();
     userResponse = UserResponse();
-
-
     showCurrentUser();
     super.initState();
   }
 
-  Future showCurrentUser () async {
+
+  Future showCurrentUser() async {
     try {
-
       final response = await authenticationService.showCurrentUser();
-
-      userResponse = UserResponse.fromJson(response.data);
-
-
-      setState(() {
-        user = userResponse.data;
-      });
-
-      print(response.data);
+      namaLengkap.value = response.data['data']['nama_lengkap'];
+      email.value = response.data['data']['email'];
     } catch (e) {
+      isLoadingUser.value = true;
       print(e);
+    } finally {
+      isLoadingUser.value = false;
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
 
     final tabs = [
-      HomePageView(user: user ?? UserModel()),
+      HomePageView(namaLengkap: namaLengkap, isLoadingUser: isLoadingUser),
       const ExplorePageView(),
       const OrderPageView(),
       const ChatPageView(),
-      ProfilePageView(user: user ?? UserModel())
+      ProfilePageView(namaLengkap: namaLengkap, email: email, isLoadingUser: isLoadingUser,)
     ];
 
     return Scaffold(

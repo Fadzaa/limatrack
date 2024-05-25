@@ -44,7 +44,7 @@ class RecommendationSection extends GetView<HomePageController> {
           height: MediaQuery.of(context).size.width * 0.42,
           child: Obx(
                 () => ShimmerOverlay(
-                    isLoading: controller.isLoading.value,
+                    isLoading: controller.isLoadingAll.value,
                     axis: Axis.horizontal,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
