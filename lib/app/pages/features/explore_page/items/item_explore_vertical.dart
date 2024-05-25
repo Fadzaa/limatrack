@@ -9,12 +9,12 @@ class ItemExploreVertical extends StatelessWidget {
     super.key,
     required this.image,
     required this.name,
-    required this.description,
-    required this.price,
+    required this.distance,
+    required this.rating,
   });
 
-  final String image, name, description;
-  final int price;
+  final String image, name, distance;
+  final double rating;
 
 
   @override
@@ -44,7 +44,7 @@ class ItemExploreVertical extends StatelessWidget {
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(name, style: tsBodySmall.copyWith(
                         fontWeight: FontWeight.w600
@@ -52,25 +52,42 @@ class ItemExploreVertical extends StatelessWidget {
 
                     const SizedBox(height: 5,),
 
-                    Text(description, style: tsLabelLarge.copyWith(
+                    Text('sekitar $distance dari lokasimu', style: tsLabelLarge.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFFBABABA)
+                        color: blackColor
                     ),),
 
                     const SizedBox(height: 5,),
 
                     Row(
                       children: [
-                        SvgPicture.asset(icPriceTagSecondary),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                          decoration: BoxDecoration(
+                              color: secondaryColor,
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Center(
+                            child: Row(
+                              children: [
 
-                        const SizedBox(width: 5,),
+                                SvgPicture.asset(icStar),
 
-                        Text("Rp. " + price.toString(), style: tsBodySmall.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: secondaryColor
-                        ),),
+                                const SizedBox(width: 5,),
+
+                                Text(rating.toString(),
+                                  style: tsBodySmall.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600
+                                  ),
+                                )
+
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
 

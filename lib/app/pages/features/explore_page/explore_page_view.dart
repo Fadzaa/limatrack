@@ -120,8 +120,8 @@ class ExplorePageView extends GetView<ExplorePageController> {
                               child: ItemExploreVertical(
                                 image: warung.banner,
                                 name: warung.namaWarung,
-                                description: warung.daerahDagang,
-                                price: 10000,
+                                distance: warung.jarak,
+                                rating: warung.averageRating,
                               ),
                             );
                           },
