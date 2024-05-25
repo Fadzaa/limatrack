@@ -6,6 +6,7 @@ import 'package:limatrack_genetic/app/pages/features/explore_page/items/item_exp
 import 'package:limatrack_genetic/app/pages/global_component/not_found_page/not_found_page.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
+import '../../../router/app_pages.dart';
 import 'explore_page_controller.dart';
 
 class ExplorePageView extends GetView<ExplorePageController> {
@@ -116,7 +117,7 @@ class ExplorePageView extends GetView<ExplorePageController> {
                             WarungModel warung = controller.listWarungTerdekat[index];
 
                             return InkWell(
-                              // onTap: () => detailJajanBottomSheet(),
+                              onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: warung.id.toString()),
                               child: ItemExploreVertical(
                                 image: warung.banner,
                                 name: warung.namaWarung,

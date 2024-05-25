@@ -14,16 +14,11 @@ class LoadingOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(isLoading) {
-      return Stack(
-        children: [
-          child,
-          Container(
-            color: Colors.black.withOpacity(0.1),
-            child: const Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
-        ],
+      return SizedBox(
+        height: MediaQuery.of(context).size.height * 1,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
       );
     }
       else {
