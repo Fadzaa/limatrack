@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:limatrack_genetic/app/api/pedagang/model/list_warung_response.dart';
 import 'package:limatrack_genetic/app/api/pedagang/service/pedagang_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:limatrack_genetic/app/pages/features/home_page/widget/items/custom_marker.dart';
 import 'dart:ui' as ui;
 
 import '../../../api/pedagang/model/warung.dart';
+import '../../../router/app_pages.dart';
 
 
 class HomePageController extends GetxController {
@@ -27,6 +28,8 @@ class HomePageController extends GetxController {
   RxList<WarungModel> listWarung = <WarungModel>[].obs;
   RxList<WarungModel> listWarungTerdekat = <WarungModel>[].obs;
 
+
+
   //Google Maps Init
   Rx<LatLng> currentLocation = const LatLng(0, 0).obs;
   GoogleMapController? mapController;
@@ -36,10 +39,18 @@ class HomePageController extends GetxController {
   Map<String, GlobalKey> keys = {};
   Map<String, Marker> markers = {};
 
+
   @override
   void onInit() {
     super.onInit();
-    WidgetsBinding.instance.addPostFrameCallback((_) => onBuildMarkerComplete);
+    // listWarungTerdekat.forEach((warung) {
+    //   keys[warung.id.toString()] = GlobalKey();
+    // });
+    //
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //         (_) => onBuildMarkerComplete()
+    // );
+
     pageController = PageController(initialPage: 0);
     pedagangService = PedagangService();
 
@@ -73,6 +84,7 @@ class HomePageController extends GetxController {
       listWarung = warungResponse.data.obs;
 
 
+
       print(listWarung);
     } catch (e) {
       isLoadingAll.value = true;
@@ -94,10 +106,14 @@ class HomePageController extends GetxController {
       warungResponse = WarungResponse.fromJson(response.data);
       listWarungTerdekat = warungResponse.data.obs;
 
-      for (var warung in listWarungTerdekat) {
-        keys[warung.id] = GlobalKey();
-      }
 
+      listWarungTerdekat.forEach((warung) {
+        keys[warung.id.toString()] = GlobalKey();
+      });
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        onBuildMarkerComplete();
+      });
 
       print(listWarung);
     } catch (e) {
@@ -142,37 +158,52 @@ class HomePageController extends GetxController {
   }
 
   Future<void> onBuildMarkerComplete() async {
+    print('it is running');
     await Future.wait(
         listWarungTerdekat.map((warung) async {
           Marker marker = await generateMarkerFromWidgets(warung);
-          markers[warung.id] = marker;
+          markers[marker.markerId.value] = marker;
+          print("I printed marker");
+          print(marker);
         }
         ));
 
+    print('Current Marker');
+    print(markers);
+
     isMarkerLoaded.value = true;
+
   }
 
-  Future<Marker> generateMarkerFromWidgets(WarungModel data) async {
-    RenderRepaintBoundary boundary = keys[data.id]!.currentContext!.findRenderObject()
-    as RenderRepaintBoundary;
+  Future<Marker> generateMarkerFromWidgets(WarungModel warung) async {
+    GlobalKey key = keys[warung.id.toString()]!;
+    RenderRepaintBoundary? boundary = key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+
+    if (boundary == null || boundary.debugNeedsPaint) {
+      print('Waiting for boundary to be painted.');
+      await Future.delayed(const Duration(milliseconds: 20));
+      update();
+      return generateMarkerFromWidgets(warung);
+    }
 
     ui.Image image = await boundary.toImage(pixelRatio: 2.0);
 
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
 
+    print('Current Marker');
+    print(markers);
+
     return Marker(
-      markerId: MarkerId(data.id),
-      position: LatLng(double.parse(data.latitude.toString()), double.parse(data.longitude.toString())),
+      onTap: () => Get.toNamed(Routes.DETAIL_DAGANG_PAGE, arguments: {'id': warung.id}),
+      markerId: MarkerId(warung.id.toString()),
+      position: warung.latitude != null && warung.longitude != null ? LatLng(double.parse(warung.latitude!), double.parse(warung.longitude!)) : const LatLng(0, 0),
       icon: BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List()),
+
       infoWindow: InfoWindow(
-        title: data.namaWarung,
+        title: warung.namaWarung,
       ),
     );
   }
-
-
-
-
 
   @override
   void dispose() {

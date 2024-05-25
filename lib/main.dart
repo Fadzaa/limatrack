@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:limatrack_genetic/app/router/app_pages.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
