@@ -28,7 +28,7 @@ class NearestSection extends GetView<HomePageController> {
           const SizedBox(height: 20,),
 
           Obx(() => ShimmerOverlay(
-            isLoading: controller.isLoading.value,
+            isLoading: controller.isLoadingNearest.value,
             axis: Axis.vertical,
             child: ListView.builder(
                 shrinkWrap: true,

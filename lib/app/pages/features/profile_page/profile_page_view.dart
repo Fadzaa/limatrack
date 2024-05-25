@@ -13,10 +13,14 @@ import 'profile_page_controller.dart';
 class ProfilePageView extends GetView<ProfilePageController> {
   const ProfilePageView({
     super.key,
-    required this.user
+    required this.namaLengkap,
+    required this.email,
+    required this.isLoadingUser
   });
 
-  final UserModel user;
+  final RxString namaLengkap;
+  final RxString email;
+  final RxBool isLoadingUser;
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +59,14 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(user.namaLengkap ?? "", style: tsBodyMedium.copyWith(
+                            Text(namaLengkap.value ?? "", style: tsBodyMedium.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: blackColor
                             ),),
 
                             const SizedBox(height: 5,),
 
-                            Text(user.email ?? "", style: tsLabelLarge),
+                            Text(email.value ?? "", style: tsLabelLarge),
                           ],
                         ),
 

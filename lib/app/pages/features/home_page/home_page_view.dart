@@ -14,10 +14,12 @@ import 'home_page_controller.dart';
 class HomePageView extends GetView<HomePageController> {
   HomePageView({
     super.key,
-    required this.user
+    required this.namaLengkap,
+    required this.isLoadingUser
   });
 
-  final UserModel user;
+  final RxString namaLengkap;
+  final RxBool isLoadingUser;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,14 @@ class HomePageView extends GetView<HomePageController> {
 
                         const SizedBox(height: 10,),
 
-                        Text(" ${user.namaLengkap}👋", style: tsBodyMedium),
+                        Obx(() {
+                          return isLoadingUser.value
+                              ? Text('')
+                              : Text(
+                            " ${namaLengkap.value} 👋",
+                            style: tsBodyMedium,
+                          );
+                        }),
                       ],
                     ),
 

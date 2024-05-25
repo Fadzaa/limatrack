@@ -14,7 +14,8 @@ import '../../../api/pedagang/model/warung.dart';
 
 
 class HomePageController extends GetxController {
-  RxBool isLoading = false.obs;
+  RxBool isLoadingAll = false.obs;
+  RxBool isLoadingNearest = false.obs;
 
   //Pagination Init
   late PageController pageController;
@@ -61,7 +62,7 @@ class HomePageController extends GetxController {
 
   Future fetchPedagangAll() async {
     try {
-      isLoading.value = true;
+      isLoadingAll.value = true;
 
       final response = await pedagangService.getPedagangAll();
 
@@ -74,16 +75,16 @@ class HomePageController extends GetxController {
 
       print(listWarung);
     } catch (e) {
-      isLoading.value = true;
+      isLoadingAll.value = true;
       print(e);
     } finally {
-      isLoading.value = false;
+      isLoadingAll.value = false;
     }
   }
 
   Future fetchPedagangNearest() async {
     try {
-      isLoading.value = true;
+      isLoadingNearest.value = true;
 
       final response = await pedagangService.getPedagangNearest();
 
@@ -100,10 +101,10 @@ class HomePageController extends GetxController {
 
       print(listWarung);
     } catch (e) {
-      isLoading.value = true;
+      isLoadingNearest.value = true;
       print(e);
     } finally {
-      isLoading.value = false;
+      isLoadingNearest.value = false;
     }
   }
 
