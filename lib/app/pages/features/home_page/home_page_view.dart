@@ -9,6 +9,7 @@ import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/n
 import 'package:limatrack_genetic/app/pages/features/home_page/widget/sections/recommendation_section.dart';
 import 'package:limatrack_genetic/common/constant.dart';
 import 'package:limatrack_genetic/common/theme.dart';
+import '../../../api/pedagang/model/warung.dart';
 import 'home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
@@ -21,6 +22,9 @@ class HomePageView extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.white,
@@ -68,8 +72,7 @@ class HomePageView extends GetView<HomePageController> {
             Container(
                 color: Colors.grey[200],
                 height: MediaQuery.of(context).size.height * 1,
-                child: Obx(() =>
-                controller.isMarkerLoaded.value ?
+                child: Obx(() => controller.isMarkerLoaded.value ?
                 GoogleMap(
                   onMapCreated: (GoogleMapController googleMapController) {
                     controller.mapController = googleMapController;
@@ -93,25 +96,17 @@ class HomePageView extends GetView<HomePageController> {
                   // }).toList())
 
                 ) :
-                //Rendering Custom Marker as a list but make it hidden
-                ListView(
-                  children: [
-                    for (int i = 0; i < controller.listWarungTerdekat.length; i++)
-
-                      Transform.translate(
-                        offset: Offset(
-                          -MediaQuery.of(context).size.width * 2,
-                          -MediaQuery.of(context).size.height * 2,
-                        ),
-                        child: RepaintBoundary(
-                          key: controller.keys[controller.listWarungTerdekat[i].id],
-                          child: CustomMarker(
-                            imageUrl: controller.listWarungTerdekat[i].banner ?? exampleAds,
-                          ),
-                        ),
-                      )
-                  ],
-                )
+                //Rendering Custom Marker as a list fak make it hidden
+                Obx(() => ListView.builder(
+                  itemCount: controller.listWarungTerdekat.length,
+                  itemBuilder: (context, index) {
+                    WarungModel warung = controller.listWarungTerdekat[index];
+                    return RepaintBoundary(
+                      key: controller.keys[warung.id.toString()],
+                      child: CustomMarker(imageUrl: warung.banner, warungName: warung.namaWarung,),
+                    );
+                  },
+                ))
                 )
             ),
 

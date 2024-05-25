@@ -6,10 +6,11 @@ import 'package:limatrack_genetic/common/theme.dart';
 class CustomMarker extends StatelessWidget {
   const CustomMarker({
     super.key,
-    required this.imageUrl
+    required this.imageUrl,
+    required this.warungName
   });
 
-  final String imageUrl;
+  final String imageUrl, warungName;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,13 @@ class CustomMarker extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 48,),
+            const SizedBox(height: 50,),
 
-            SvgPicture.asset(bottomMarker, width: 30)
+            SvgPicture.asset(bottomMarker, width: 30),
+
+            const SizedBox(height: 10),
+
+            Text(warungName, style: tsBodySmall)
           ],
         ),
 
@@ -41,7 +46,7 @@ class CustomMarker extends StatelessWidget {
             height: 45,
             decoration:  BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(exampleAds),
+                image: NetworkImage(imageUrl),
                 fit: BoxFit.cover
               ),
               shape: BoxShape.circle,
